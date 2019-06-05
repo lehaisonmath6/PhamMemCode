@@ -1,0 +1,29 @@
+﻿@model BaiThi
+@{
+    ViewBag.Title = "Kết quả thi";
+}
+
+
+@{
+    var nguoidung = Session[ThiOnlineMVC.Common.CommonConstants.NGUOIDUNG_SESSION] as ThiOnlineMVC.Common.NguoiDungLogin;
+    var sinhvien = nguoidung.nguoiDung;
+    ThiOnlineEntities thiOnlineEntities = new ThiOnlineEntities();
+}
+
+<div class="container">
+    <div class="SelQuiz">
+        <div class="panel panel-default" style="width: 37%; margin: 20% 32%;">
+            <div class="panel-heading">Kết quả thi môn @Model.DeThi.MonHoc.TenMonHoc của thí sinh @sinhvien.HoTen</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <p>Họ và tên : @sinhvien.HoTen</p>
+                    <p>Ngày sinh : @sinhvien.NgaySinh</p>
+                    <p>Quê quán : @sinhvien.QueQuan</p>
+                    <p>Số câu trả lời đúng : @Model.SoCauDung / @Model.TongSoCau</p>
+            @*        <p>Số điểm : @{(float)Model.SoCauDung / Model.TongSoCau * 10}</p>*@
+                </div>
+                <div class="btn btn-success btn-lg center-block"><a href="@Url.Action("Index","Login")">Hoàn tất</a></div>
+            </div>
+        </div>
+    </div>
+</div>  <!-- END CONTAINER -->

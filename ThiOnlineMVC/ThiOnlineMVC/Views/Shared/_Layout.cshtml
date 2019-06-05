@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Phần mềm thi online</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style type="text/css">
+
+        .Choices label {
+            background-color: #e0dfdf;
+            padding: 7px 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            border: 1px solid #d0c9c9;
+        }
+
+        div .answer, .radio-inline {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Thi online", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Đăng xuất", "DangXuat", "Home")</li>
+                   
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Phần mềm thi online</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("MyScritps", required: false)
+    <script>
+
+        $(document).ready(function () {
+
+            $("#IDKhoa").bind("click", function () {
+                // everytime the value of the dropdown 1 is changed, do this:
+                console.log("click nè")
+                var khoaid = $("#IDKhoa").val();
+
+                $.get("/Khoas/GetMonHocCombobox", { 'id': khoaid }, function (data) {
+                    $("#IDMonHoc").empty(); // clear old values if exist
+
+                    var options = "";
+                    console.log(data)
+
+                    for (i = 0; i < data.length; i++) { // build options
+
+                        options += ("<option value='" + data[i].IDMonHoc + "'>" + data[i].TenMonHoc + "</option>");
+                    }
+
+                    $("#IDMonHoc").append(options);
+                });
+            });
+
+            $("#IDMonHoc").bind("click", function () {
+                // everytime the value of the dropdown 1 is changed, do this:
+                console.log("click nè")
+                var monhocid = $("#IDMonHoc").val();
+
+                $.get("/MonHocs/GetChuongHocCombobox", { 'id': monhocid }, function (data) {
+                    $("#IDChuongHoc").empty(); // clear old values if exist
+
+                    var options = "";
+                    console.log(data)
+
+                    for (i = 0; i < data.length; i++) { // build options
+
+                        options += ("<option value='" + data[i].IDChuongHoc + "'>" + data[i].TenChuong + "</option>");
+                    }
+                    $("#IDChuongHoc").append(options);
+                });
+            });
+
+            $("#IDChuongHoc").bind("click", function () {
+                // everytime the value of the dropdown 1 is changed, do this:
+                console.log("click nè")
+                var chuonghocid = $("#IDChuongHoc").val();
+
+                $.get("/ChuongHocs/GetDoanVanCombobox", { 'id': chuonghocid }, function (data) {
+                    $("#IDDoanVan").empty(); // clear old values if exist
+
+                    var options = "";
+                    console.log(data)
+
+                    for (i = 0; i < data.length; i++) { // build options
+
+                        options += ("<option value='" + data[i].IDDoanVan + "'>" + data[i].TenDoanVan + "</option>");
+                    }
+                    $("#IDDoanVan").append(options);
+                });
+            });
+
+            $("#IDKyThi").bind("click", function () {
+                // everytime the value of the dropdown 1 is changed, do this:
+                console.log("click nè")
+                var kythiid = $("#IDKyThi").val();
+
+                $.get("/Admin/KyThis/GetCaThiCombobox", { 'id': kythiid }, function (data) {
+                    $("#IDCaThi").empty(); // clear old values if exist
+
+                    var options = "";
+                    console.log(data)
+
+                    for (i = 0; i < data.length; i++) { // build options
+
+                        options += ("<option value='" + data[i].IDCa + "'>" + data[i].TenCa + "</option>");
+                    }
+                    $("#IDCaThi").append(options);
+                });
+            });
+        });
+
+
+
+    </script>
+</body>
+</html>

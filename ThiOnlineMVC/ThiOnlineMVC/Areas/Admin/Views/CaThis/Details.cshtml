@@ -1,0 +1,59 @@
+﻿@model ThiOnlineMVC.CaThi
+
+@{
+    ViewBag.Title = "Chi tiết ca thi";
+}
+
+
+<div class="text-center">
+    <h2>Chi tiết ca thi</h2>
+    <div>
+        <h4>Chi tiết ca thi</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Tên ca thi
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TenCa)
+            </dd>
+
+            <dt>
+                Mô tả
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MoTa)
+            </dd>
+
+            <dt>
+                Thời gian bắt đầu
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ThoiGianBatDau)
+            </dd>
+
+            <dt>
+                Thời gian kết thúc
+
+            <dd>
+                @Html.DisplayFor(model => model.ThoiGianKetThuc)
+            </dd>
+
+            <dt>
+                Kỳ thi
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.KyThi.TenKyThi)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.IDCa }) |
+        @Html.ActionLink("Quay trở lại danh sách", "Index")
+    </p>
+</div>

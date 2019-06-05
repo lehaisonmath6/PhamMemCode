@@ -1,0 +1,105 @@
+﻿@model ThiOnlineMVC.KyThi
+
+@{
+    ViewBag.Title = "Chi tiết kỳ thi";
+}
+
+<<div class="row text-center">
+    <!-- Border Left Utilities -->
+    <div class="col-lg-4">
+        <div class="card mb-4 py-3 border-left-primary">
+            <div class="card-body">
+                <div class="card-header py-3">
+                    <h4 class="m-0 font-weight-bold text-primary">Chi tiết kỳ thi</h4>
+                </div>
+                <dl class="dl-horizontal">
+                    <dt>
+                        Tên kỳ thi
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TenKyThi)
+                    </dd>
+
+                    <dt>
+                        Mô tả
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MoTa)
+                    </dd>
+                    <dt>
+                       Ngày bắt đầu
+                    </dt>
+
+                    <dd>
+                        @Model.NgayBatDau.Value.ToShortDateString()
+                    </dd>
+                    <dt>
+                        Ngày kết thúc
+                    </dt>
+
+                    <dd>
+                        @Model.NgayKetThuc.Value.ToShortDateString()
+                    </dd>
+                </dl>
+                <p>
+                    @Html.ActionLink("Sửa", "Edit", new { id = Model.IDKyThi }) |
+                    @Html.ActionLink("Trở lại danh sách", "Index")
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Border Bottom Utilities -->
+    <div class="col-lg-8">
+        <div class="card mb-4 py-3 border-bottom-primary">
+            <div class="card-body">
+                <div class="card-header py-3">
+                    <h4 class="m-0 font-weight-bold text-primary">Danh sách ca thi của kỳ thi </h4>
+                </div>
+                <a href="@Url.Action("Create","CaThis",new { id = Model.IDKyThi})">Thêm ca thi</a>
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Tên ca thi")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Mô tả")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Thời gian bắt đầu")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Thời gian kết thúc")
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model.CaThis)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenCa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MoTa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ThoiGianBatDau)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ThoiGianKetThuc)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Sửa", "Edit", "CaThis", new { id = item.IDCa }, null) |
+                            @Html.ActionLink("Chi tiết", "Details", "CaThis", new { id = item.IDCa }, null) |
+                            @Html.ActionLink("Xóa", "Delete", "CaThis", new { id = item.IDCa }, null)
+                        </td>
+                    </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

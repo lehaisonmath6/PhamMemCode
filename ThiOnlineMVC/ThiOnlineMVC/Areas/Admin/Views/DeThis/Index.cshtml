@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ThiOnlineMVC.DeThi>
+
+@{
+    ViewBag.Title = "Danh sách đề thi";
+}
+
+<div class="card shadow mb-4 text-center">
+    <div class="card-header py-3">
+        <h2 class="m-0 font-weight-bold text-primary">Quản lý đề thi</h2>
+    </div>
+    <div class="card-body">
+        <p>
+            @Html.ActionLink("Thêm đề thi", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Mã đề thi
+                </th>
+                <th>
+                    Mô tả
+                </th>
+                <th>
+                    Thời gian thi (số phút)
+                </th>
+                <th>
+                    Môn thi
+                </th>
+                <th>
+                    Ca thi
+                </th>
+                <th>
+                    Kỳ thi
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenDe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MoTa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThoiGian)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MonHoc.TenMonHoc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CaThi.TenCa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelITem => item.CaThi.KyThi.TenKyThi)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.IDDeThi }) |
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.IDDeThi }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.IDDeThi })
+                </td>
+            </tr>
+            }
+        </table>
+    </div>
+</div>

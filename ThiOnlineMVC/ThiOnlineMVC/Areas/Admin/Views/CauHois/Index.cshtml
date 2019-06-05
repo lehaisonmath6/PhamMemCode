@@ -1,0 +1,155 @@
+﻿@model ThiOnlineMVC.CauHoi
+@{
+    ViewBag.Title = "Danh sách câu hỏi";
+}
+
+@{ 
+    ThiOnlineMVC.ThiOnlineEntities thiOnlineEntities = new ThiOnlineMVC.ThiOnlineEntities();
+}
+
+
+
+
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-1 text-gray-800">Ngân hàng câu hỏi</h1>
+    <p class="mb-4"> Đây là danh sách ngân hàng câu hỏi để tổng hợp thành bài thi</p>
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Grow In Utility -->
+        <div class="col-lg-6">
+            <div class="card position-relative">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Cây câu hỏi</h6>
+                </div>
+                <div class="card-body">
+                    <ul id="myUL">
+                        @{
+                            foreach (var khoa in thiOnlineEntities.Khoas)
+                            {
+                                <li>
+                                    <span class="caret">@khoa.TenKhoa</span>
+                                    <ul class="nested">
+                                        @foreach (var monhoc in khoa.MonHocs)
+                                        {
+                                            <li>
+                                                <span class="caret">@monhoc.TenMonHoc</span>
+                                                <ul class="nested">
+                                                    @foreach (var chuonghoc in monhoc.ChuongHocs)
+                                                    {
+                                                        <li>
+                                                            <span class="caret">@chuonghoc.TenChuong</span>
+                                                            <ul class="nested">
+                                                                @foreach (var doanvan in chuonghoc.DoanVans)
+                                                                {
+                                                                    <li>
+                                                                        <span class="caret">@doanvan.TenDoanVan</span>
+                                                                        <ul class="nested">
+                                                                            @foreach (var cauhoi in doanvan.CauHois)
+                                                                            {
+                                                                                <li>
+                                                                                    <a href="@Url.Action("Index","CauHois",new { id = cauhoi.IDCauHoi})"> @cauhoi.TenCauHoi</a>
+                                                                                </li>
+                                                                            }
+                                                                        </ul>
+                                                                    </li>
+                                                                }
+                                                            </ul>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                        }
+                        <script>
+                            var toggler = document.getElementsByClassName("caret");
+                            var i;
+
+                            for (i = 0; i < toggler.length; i++) {
+                                toggler[i].addEventListener("click", function () {
+                                    this.parentElement.querySelector(".nested").classList.toggle("active");
+                                    this.classList.toggle("caret-down");
+                                });
+                            }
+                        </script>
+                    </ul>
+                </div>
+            </div>
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Tùy chọn</h6>
+                </div>
+                <div class="card-body">
+
+                    <a href="@Url.Action("Create","CauHois")" class="btn btn-primary btn-block"> Thêm câu hỏi</a>
+                    <a href="@Url.Action("Edit","CauHois",new { id = Model.IDCauHoi })" class="btn btn-info btn-block"> Sửa câu hỏi</a>
+                    <a href="@Url.Action("Delete","CauHois",new { id = Model.IDCauHoi})" class="btn btn-danger btn-block"> Xóa câu hỏi</a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Fade In Utility -->
+        <div class="col-lg-6">
+            <div class="card position-relative">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Thông tin câu hỏi</h6>
+                </div>
+                <div class="card-body">
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @*<div class="form-group">
+            @Html.DisplayNameFor(model => model.IDCauHoi)
+            @Html.DisplayFor(model => model.IDCauHoi, new { htmlAttributes = new { @class = "form-control form-control-user" } })
+        </div>*@
+
+                        <div class="form-group">
+                            <p><b>Tên câu hỏi</b></p>
+                            @Html.EditorFor(model => model.TenCauHoi, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Tên câu hỏi" } })
+                        </div>
+
+                        <div class="form-group">
+                            <p><b>Mô tả</b></p>
+                            @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Mô tả" } })
+                        </div>
+                        <div class="form-group">
+                            <p><b>Lựa chọn A</b></p>
+                            @Html.EditorFor(model => model.TracNghiemA, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Trắc nghiệm A" } })
+                        </div>
+                        <div class="form-group">
+                            <p><b>Lựa chọn B</b></p>
+                            @Html.EditorFor(model => model.TracNghiemB, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Trắc nghiệm B" } })
+                        </div>
+                        <div class="form-group">
+                            <p><b>Lựa chọn C</b></p>
+                            @Html.EditorFor(model => model.TracNghiemC, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Trắc nghiệm C" } })
+                        </div>
+                        <div class="form-group">
+                            <p><b>Lựa chọn D</b></p>
+                            @Html.EditorFor(model => model.TracNghiemD, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Trắc nghiệm D" } })
+                        </div>
+                        <div class="form-group">
+                            <p><b>Độ khó</b></p>
+                            @Html.EditorFor(model => model.DoKho.TenDoKho, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Độ khó" } })
+                        </div>
+                        <div class="form-group">
+                            <p><b>Đáp án</b></p>
+                            @Html.EditorFor(model => model.DapAn, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Đáp án" } })
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+
+       
+    </div>
+
+</div>

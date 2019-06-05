@@ -1,0 +1,16 @@
+﻿  main.cpp
+d:\proxyserver\proxyserver\main.cpp(286): warning C4267: '=': conversion from 'size_t' to 'ULONG', possible loss of data
+d:\proxyserver\proxyserver\main.cpp(262): error C4996: 'WSASocketA': Use WSASocketW() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\winsock2.h(3416): note: see declaration of 'WSASocketA'
+d:\proxyserver\proxyserver\main.cpp(263): error C4996: 'gethostbyname': Use getaddrinfo() or GetAddrInfoW() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\winsock2.h(2219): note: see declaration of 'gethostbyname'
+d:\proxyserver\proxyserver\main.cpp(403): error C4996: 'WSASocketA': Use WSASocketW() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\winsock2.h(3416): note: see declaration of 'WSASocketA'
+d:\proxyserver\proxyserver\main.cpp(437): error C4996: 'gethostbyname': Use getaddrinfo() or GetAddrInfoW() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\winsock2.h(2219): note: see declaration of 'gethostbyname'
+d:\proxyserver\proxyserver\main.cpp(446): error C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\winsock2.h(1849): note: see declaration of 'inet_ntoa'
+d:\proxyserver\proxyserver\main.cpp(455): warning C4101: 'fdread': unreferenced local variable
+d:\proxyserver\proxyserver\main.cpp(390): warning C4101: 'serverOverlapped': unreferenced local variable
+d:\proxyserver\proxyserver\main.cpp(456): warning C4101: 'ret': unreferenced local variable
+d:\proxyserver\proxyserver\main.cpp(389): warning C4101: 'dataBuf': unreferenced local variable

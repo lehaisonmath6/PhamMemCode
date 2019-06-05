@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<ArrayOfTblBangDien xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <tblBangDien>
+    <SoDien>1909AW</SoDien>
+    <SoNhom>55</SoNhom>
+    <NoiDung>xin chao tat ca moi nguoi</NoiDung>
+    <DoKhan>TKZ</DoKhan>
+    <SoLanPhat>1</SoLanPhat>
+    <GioBatDau>10:56:00</GioBatDau>
+    <GioKetThuc>11:04:00</GioKetThuc>
+    <PhatTuDong>true</PhatTuDong>
+    <NguoiPhat>Lê Hải Sơn</NguoiPhat>
+    <IDMay>1</IDMay>
+  </tblBangDien>
+  <tblBangDien>
+    <SoDien>1904AW</SoDien>
+    <SoNhom>59</SoNhom>
+    <NoiDung>xin chao tat ca moi nguoi</NoiDung>
+    <DoKhan>TKZ</DoKhan>
+    <SoLanPhat>1</SoLanPhat>
+    <GioBatDau>10:56:00</GioBatDau>
+    <GioKetThuc>11:04:00</GioKetThuc>
+    <PhatTuDong>true</PhatTuDong>
+    <NguoiPhat>Lê Hải Sơn</NguoiPhat>
+    <IDMay>1</IDMay>
+  </tblBangDien>
+  <tblBangDien>
+    <SoDien>1905AW</SoDien>
+    <SoNhom>59</SoNhom>
+    <NoiDung>xin chao tat ca moi nguoi</NoiDung>
+    <DoKhan>TKZ</DoKhan>
+    <SoLanPhat>1</SoLanPhat>
+    <GioBatDau>10:56:00</GioBatDau>
+    <GioKetThuc>11:04:00</GioKetThuc>
+    <PhatTuDong>true</PhatTuDong>
+    <NguoiPhat>Lê Hải Sơn</NguoiPhat>
+    <IDMay>1</IDMay>
+  </tblBangDien>
+  <tblBangDien>
+    <SoDien>1903AW</SoDien>
+    <SoNhom>59</SoNhom>
+    <NoiDung>xin chao tat ca moi nguoi</NoiDung>
+    <DoKhan>TKZ</DoKhan>
+    <SoLanPhat>1</SoLanPhat>
+    <GioBatDau>10:56:00</GioBatDau>
+    <GioKetThuc>11:04:00</GioKetThuc>
+    <PhatTuDong>true</PhatTuDong>
+    <NguoiPhat>Lê Hải Sơn</NguoiPhat>
+    <IDMay>1</IDMay>
+  </tblBangDien>
+  <tblBangDien>
+    <SoDien>1901AW</SoDien>
+    <SoNhom>69</SoNhom>
+    <NoiDung>xin chao tat ca moi nguoi</NoiDung>
+    <DoKhan>TKZ</DoKhan>
+    <SoLanPhat>1</SoLanPhat>
+    <GioBatDau>10:56:00</GioBatDau>
+    <GioKetThuc>11:04:00</GioKetThuc>
+    <PhatTuDong>true</PhatTuDong>
+    <NguoiPhat>Lê Hải Sơn</NguoiPhat>
+    <IDMay>1</IDMay>
+  </tblBangDien>
+  <tblBangDien>
+    <SoDien>1906AW</SoDien>
+    <SoNhom>59</SoNhom>
+    <NoiDung>xin chao tat ca moi nguoi</NoiDung>
+    <DoKhan>TKZ</DoKhan>
+    <SoLanPhat>1</SoLanPhat>
+    <GioBatDau>10:56:00</GioBatDau>
+    <GioKetThuc>11:04:00</GioKetThuc>
+    <PhatTuDong>true</PhatTuDong>
+    <NguoiPhat>Lê Hải Sơn</NguoiPhat>
+    <IDMay>1</IDMay>
+  </tblBangDien>
+</ArrayOfTblBangDien>

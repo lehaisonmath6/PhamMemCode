@@ -1,0 +1,47 @@
+﻿@model ThiOnlineMVC.MonHoc
+
+@{
+    ViewBag.Title = "Xóa môn học";
+}
+
+
+<div class="text-center">
+    <h2>Xóa môn học</h2>
+    <h3>Bạn có chắc chắn muốn xóa?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TenMonHoc)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TenMonHoc)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MoTa)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MoTa)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model=>model.Khoa.TenKhoa)
+            </dt>
+            <dt>
+                @Html.DisplayFor(model=>model.Khoa.TenKhoa)
+            </dt>
+        </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Xóa" class="btn btn-default" /> |
+                @Html.ActionLink("Quay trở lại danh sách", "Index")
+            </div>
+        }
+    </div>
+</div>

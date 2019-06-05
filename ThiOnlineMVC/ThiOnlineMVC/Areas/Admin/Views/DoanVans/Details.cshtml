@@ -1,0 +1,114 @@
+﻿@model ThiOnlineMVC.DoanVan
+
+@{
+    ViewBag.Title = "Chi tiết đoạn văn";
+}
+
+
+<div class="row text-center">
+    <!-- Border Left Utilities -->
+    <div class="col-lg-4">
+        <div class="card mb-4 py-3 border-left-primary">
+            <div class="card-body">
+                <div class="card-header py-3">
+                    <h4 class="m-0 font-weight-bold text-primary">Chi tiết đoạn văn</h4>
+                </div>
+                <dl class="dl-horizontal">
+                    <dt>
+                       Tên đoạn văn
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TenDoanVan)
+                    </dd>
+
+                    <dt>
+                       Mô tả
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MoTa)
+                    </dd>
+                    <dd>
+                        Tên chương
+                    </dd>
+                    <dt>
+                        @Html.DisplayFor(model => model.ChuongHoc.TenChuong)
+                    </dt>
+                    <dd>
+                        Tên môn học
+                    </dd>
+                    <dt>
+                        @Html.DisplayFor(model => model.ChuongHoc.MonHoc.TenMonHoc)
+                    </dt>
+                    <dd>
+                       Tên khoa
+                    </dd>
+                    <dt>
+                        @Html.DisplayFor(model => model.ChuongHoc.MonHoc.Khoa.TenKhoa)
+                    </dt>
+                </dl>
+                <p>
+                    @Html.ActionLink("Sửa", "Edit", new { id = Model.IDDoanVan }) |
+                    @Html.ActionLink("Trở lại danh sách", "Index")
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Border Bottom Utilities -->
+    <div class="col-lg-8">
+        <div class="card mb-4 py-3 border-bottom-primary">
+            <div class="card-body">
+                <div class="card-header py-3">
+                    <h4 class="m-0 font-weight-bold text-primary">Danh sách câu hỏi trong chương học</h4>
+                </div>
+                @Html.ActionLink("Thêm câu hỏi", "Create", "CauHois")
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Tên câu hỏi")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Mô tả")
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model.CauHois)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenCauHoi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MoTa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DapAn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TracNghiemA)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelITem => item.TracNghiemB)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TracNghiemC)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TracNghiemD)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Sửa", "Edit", "CauHois", new { id = item.IDCauHoi }, null) |
+                            @Html.ActionLink("Chi tiết", "Details", "CauHois", new { id = item.IDCauHoi }, null) |
+                            @Html.ActionLink("Xóa", "Delete", "CauHois", new { id = item.IDCauHoi }, null)
+                        </td>
+                    </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

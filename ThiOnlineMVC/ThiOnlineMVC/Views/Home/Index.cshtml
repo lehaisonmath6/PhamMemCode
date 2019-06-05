@@ -1,0 +1,30 @@
+﻿@model NguoiDung
+@{
+    ViewBag.Title = "Thi online";
+}
+
+
+<div class="container">
+    <div class="SelQuiz">
+        <div class="panel panel-default" style="width: 37%; margin: 20% 32%;">
+            <div class="panel-heading">Chọn môn thi để bắt đầu thi</div>
+            <div class="panel-body">
+
+                <div class="form-group">
+                    <p><b>Họ và tên : </b>@Model.HoTen</p>
+                </div>
+                <div class="form-group">
+                    <p><b>Ngày sinh : </b>@Model.NgaySinh.Value.ToShortDateString()</p>
+                </div>
+
+                <div class="form-group">
+                    <p><b>Quê quán : </b>@Model.QueQuan</p>
+                </div>
+                <div class="form-group align-content-center">
+                    <a href="@Url.Action("ChonMonThi","Home",new { id = Model.IDNguoiDung})" class="btn btn-primary" style="width:100%">Bắt đầu thi</a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>  <!-- END CONTAINER -->

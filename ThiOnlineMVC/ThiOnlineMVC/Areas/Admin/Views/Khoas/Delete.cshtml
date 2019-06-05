@@ -1,0 +1,47 @@
+﻿@model ThiOnlineMVC.Khoa
+
+@{
+    ViewBag.Title = "Xóa khoa";
+}
+
+
+<div class="text-center">
+    <h2>Xóa khoa</h2>
+
+    <h3>Bạn có chắc chắn muốn xóa?</h3>
+
+
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TenKhoa)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TenKhoa)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MoTa)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MoTa)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Xóa" class="btn btn-default" /> |
+                @Html.ActionLink("Quay trở lại danh sách khoa", "Index")
+            </div>
+        }
+    </div>
+
+</div>

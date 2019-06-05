@@ -1,0 +1,58 @@
+﻿@model ThiOnlineMVC.DoanVan
+
+@{
+    ViewBag.Title = "Xóa đoạn văn";
+}
+
+<div class="text-center">
+    <h2>Xóa chương học</h2>
+    <h3>Bạn có chắc chắn muốn xóa?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TenDoanVan)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TenDoanVan)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MoTa)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MoTa)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ChuongHoc.TenChuong)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ChuongHoc.TenChuong)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ChuongHoc.MonHoc.TenMonHoc)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ChuongHoc.MonHoc.TenMonHoc)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ChuongHoc.MonHoc.Khoa.TenKhoa)
+            </dt>
+            <dt>
+                @Html.DisplayFor(model => model.ChuongHoc.MonHoc.Khoa.TenKhoa)
+            </dt>
+        </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Xóa" class="btn btn-default" /> |
+                @Html.ActionLink("Quay trở lại danh sách", "Index")
+            </div>
+        }
+    </div>
+</div>

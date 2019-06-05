@@ -1,0 +1,82 @@
+﻿@model ThiOnlineMVC.NguoiDung
+
+@{
+    ViewBag.Title = "Tạo mới sinh viên";
+}
+
+<div class="center-block">
+    <div>
+        <div class="p-5 center-block">
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Tạo mới sinh viên!</h1>
+            </div>
+            @using (Html.BeginForm("Create", "SinhViens", FormMethod.Post, new { @class = "user" }))
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.IDNguoiDung)
+                @*<div class="form-group">
+            <input type="text" class="form-control form-control-user" id="exampleInputEmail" placeholder="Mã sinh viên tự sinh">
+
+        </div>*@
+
+                <div class="form-group">
+
+
+                    @Html.EditorFor(model => model.TenDangNhap, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Tên đăng nhập" } })
+                    @Html.ValidationMessageFor(model => model.TenDangNhap, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group">
+
+                    @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Mật khẩu" } })
+                    @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+
+                </div>
+                @*<div class="form-group">
+
+            @Html.CheckBoxFor(model => (bool)model.MoRong, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Được phép thi" } })
+            @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+
+        </div>*@
+                <div class="form-group">
+                    @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Họ và tên" } })
+                    @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <p><b>Ngày sinh</b></p>
+                    <input class="form-control form-control-user" data-val="true" data-val-required="Date is required"
+                           id="NgaySinh" name="NgaySinh" type="date" value="1/11/1989" />
+                    @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                </div>
+                @*<div class="form-group">
+            @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Ngày sinh" } })
+            @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+        </div>*@
+                <div class="form-group">
+                    @Html.EditorFor(model => model.QueQuan, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Quê quán" } })
+                    @Html.ValidationMessageFor(model => model.QueQuan, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Số điện thoại" } })
+                    @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Email" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+                <button type="submit" value="Create" class="btn btn-google btn-user btn-block">Tạo mới sinh viên</button>
+            </div>
+            }
+            <hr>
+            <div class="text-center">
+                <div>
+                    @Html.ActionLink("Quay trở lại danh sách", "Index", "SinhViens", new { @class = "small" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

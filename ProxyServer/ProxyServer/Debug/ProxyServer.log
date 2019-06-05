@@ -1,0 +1,4 @@
+﻿  main.cpp
+d:\proxyserver\proxyserver\main.cpp(250): warning C4101: 'iSendResult': unreferenced local variable
+d:\proxyserver\proxyserver\main.cpp(265): warning C4101: 'reslen': unreferenced local variable
+  ProxyServer.vcxproj -> D:\ProxyServer\Debug\ProxyServer.exe

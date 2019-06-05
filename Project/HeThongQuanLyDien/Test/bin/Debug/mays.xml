@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<ArrayOfTblMay xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <tblMay>
+    <IDMay>1</IDMay>
+    <IP>169.254.32.133</IP>
+    <TenMay>Vung 4</TenMay>
+  </tblMay>
+</ArrayOfTblMay>

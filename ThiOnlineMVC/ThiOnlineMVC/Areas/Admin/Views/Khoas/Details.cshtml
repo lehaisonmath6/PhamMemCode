@@ -1,0 +1,82 @@
+﻿@model ThiOnlineMVC.Khoa
+
+@{
+    ViewBag.Title = "Chi tiết";
+}
+
+
+
+<div class="row text-center">
+    <!-- Border Left Utilities -->
+    <div class="col-lg-4">
+        <div class="card mb-4 py-3 border-left-primary">
+            <div class="card-body">
+                <div class="card-header py-3">
+                    <h4 class="m-0 font-weight-bold text-primary">Chi tiết khoa</h4>
+                </div>
+                <dl class="dl-horizontal">
+                    <dt>
+                        Tên khoa
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TenKhoa)
+                    </dd>
+
+                    <dt>
+                       Mô tả
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MoTa)
+                    </dd>
+                </dl>
+                <p>
+                    @Html.ActionLink("Sửa", "Edit", new { id = Model.IDKhoa }) |
+                    @Html.ActionLink("Trở lại danh sách", "Index")
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Border Bottom Utilities -->
+    <div class="col-lg-8">
+        <div class="card mb-4 py-3 border-bottom-primary">
+            <div class="card-body">
+                <div class="card-header py-3">
+                    <h4 class="m-0 font-weight-bold text-primary">Danh sách môn học trong khoa</h4>
+                </div>
+                <a href="@Url.Action("Create","MonHocs",new { id = Model.IDKhoa})">Thêm môn học</a>
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Tên môn học")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Mô tả")
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model.MonHocs)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TenMonHoc)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MoTa)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Sửa", "Edit", "MonHocs", new { id = item.IDMonHoc }, null) |
+                                @Html.ActionLink("Chi tiết", "Details", "MonHocs", new { id = item.IDMonHoc }, null) |
+                                @Html.ActionLink("Xóa", "Delete", "MonHocs", new { id = item.IDMonHoc }, null)
+                            </td>
+                        </tr>
+                    }
+                </table>
+        </div>
+        </div>
+    </div>
+
+</div>

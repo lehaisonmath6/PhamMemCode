@@ -1,0 +1,152 @@
+﻿@model ThiOnlineMVC.Models.DeThiModel
+@{
+    ViewBag.Title = "Trang thi";
+}
+
+
+@{
+    int count = 1, countR = 0;
+    var nguoidung = Session[ThiOnlineMVC.Common.CommonConstants.NGUOIDUNG_SESSION] as ThiOnlineMVC.Common.NguoiDungLogin;
+    ThiOnlineEntities thiOnlineEntities = new ThiOnlineEntities();
+}
+
+<div class="container">
+    <!-- User Info -->
+    <div class="userConnected" style="border:2px dashed #cecaca; border-radius: 10px; margin-top: 3%;">
+        <div class="card-body">
+            <h5 class="card-title">Họ tên: <b>@nguoidung.nguoiDung.HoTen</b> </h5>
+            <p class="card-text">Ngày sinh: <b>@nguoidung.nguoiDung.NgaySinh.Value.ToShortDateString()</b> </p>
+            <p class="card-text">Quê quán: <b>@nguoidung.nguoiDung.QueQuan</b></p>
+            <p class="card-text">Khoa : </p>
+        </div>
+    </div>
+    <div class="Quiz">
+        <h4 style="margin-top: 4%;"> <span class="label label-info">Câu hỏi :</span> </h4>
+        @if (Model != null)
+        {
+
+           
+            foreach (var question in Model.idCauHois)
+            {
+                var cuahoi = thiOnlineEntities.CauHois.SingleOrDefault(n => n.IDCauHoi == question);
+                <div class="BlockQ" style="border: 1px solid #bdbdbd; width: 75%; border-radius: 4px; margin-top: 40px; background-color: #f0ffff; padding: 8px;">
+                    <div class="Question" style="padding: 2%;">
+                        <span class="label label-warning"> @string.Format("{0}{1}.", "Q", count)</span>
+                        <span id="@string.Format("{0}{1}", "ID_Q", count)" style="display:none;">@question</span>
+                        <p style="display: inline; padding: 2%;" id="@string.Format("{0}{1}", "Q", count)">@cuahoi.TenCauHoi</p>
+                    </div>
+                    <div class="Choices" style="margin-left: 8%;">
+                        <label class="radio-inline">
+                            <input type="radio" name="@string.Format("{0}{1}", "inlineRadioOptions", count)" id="@string.Format("{0}{1}", "inlineRadio", countR)" value="A" style="margin-left: -16px;">A. @cuahoi.TracNghiemA
+                        </label><br />
+                        @{
+                            countR++;
+                        }
+                        <label class="radio-inline">
+                            <input type="radio" name="@string.Format("{0}{1}", "inlineRadioOptions", count)" id="@string.Format("{0}{1}", "inlineRadio", countR)" value="B" style="margin-left: -16px;">B. @cuahoi.TracNghiemB
+                        </label><br />
+                        @{
+                            countR++;
+                        }
+                        <label class="radio-inline">
+                            <input type="radio" name="@string.Format("{0}{1}", "inlineRadioOptions", count)" id="@string.Format("{0}{1}", "inlineRadio", countR)" value="C" style="margin-left: -16px;">C. @cuahoi.TracNghiemC
+                        </label><br />
+                        @{
+                            countR++;
+                           }
+                        <label class="radio-inline">
+                            <input type="radio" name="@string.Format("{0}{1}", "inlineRadioOptions", count)" id="@string.Format("{0}{1}", "inlineRadio", countR)" value="D" style="margin-left: -16px;">D. @cuahoi.TracNghiemD
+                        </label><br />
+                         @{countR++; }
+                    </div> <!--END Choices-->
+
+                    <div id="@string.Format("{0}{1}{2}", "Ans","Q", count)">
+
+                    </div>
+                </div> <!-- END BlockQ -->
+                count++;
+            }
+            <span id="countQuections" style="display:none;">@count</span>
+            <button type="button" id="SubmitQuiz" class="btn btn-default" style="margin-top: 10px;"><span class="glyphicon glyphicon-ok"></span>  Nộp bài </button>
+
+
+        }
+    </div> <!-- END QUIZ -->
+</div> <!-- END CONTAINER -->
+@section MyScritps
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#SubmitQuiz').on('click', function () {
+
+                //count Questions
+                var sel = $('#countQuections').text();
+
+                console.log(sel);
+
+                var baiThiModels = [], countQuestion = parseInt(sel), question = {}, j = 1;
+
+                for (var i = 1; i < countQuestion; i++) {
+                    question = {
+                        IDCauHoi: $('#ID_Q'+ i).text(),
+                        DapAn: '',
+                        CauTraLoi: $('input[name=inlineRadioOptions' + i + ']:checked').val(),
+                        isCorrect: false,
+                        IDDeThi: @Model.deThi.IDDeThi,
+                        IDCaThi: @Model.deThi.IDCaThi,
+                    }
+
+                    baiThiModels.push(question);
+                }
+
+                $.ajax({
+
+                    type: 'POST',
+                    url: '@Url.Action("TrangThi", "Home")',
+                    data: { baiThiModels },
+                    crossDomain: true,
+                    success: function (response) {
+                        console.log(response);
+                        window.location.href = response;
+                        //if (response.result.length > 0)
+                        //{
+                        //    for(var i = 0; i <response.result.length; i++ )
+                        //    {
+                        //        if(response.result[i].isCorrect == true)
+                        //        {
+
+                        //            $('#AnsQ' + j).html('<div class="alert alert-success" role="alert"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Correct answer</div>');
+                        //        }
+                        //        else
+                        //        {
+                        //            $('#AnsQ' + j).html('<div class="alert alert-danger" role="alert"> <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> Incorrect answer - The Good Answer is <b>' + response.result[i].AnswerQ + '</b></div>');
+                        //        }
+                        //        j++;
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    alert("Something Wrong");
+                        //}
+
+
+                        //console.log(response.result.length);
+
+                    },
+                    error: function (response) {
+
+                    }
+                });
+
+                console.log(resultQuiz);
+
+            });
+
+
+
+        });
+
+    </script>
+}

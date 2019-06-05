@@ -1,0 +1,167 @@
+﻿@model ThiOnlineMVC.CauHoi
+
+@{
+    ViewBag.Title = "Sửa câu hỏi";
+}
+
+@*<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>CauHoi</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IDCauHoi)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TenCauHoi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenCauHoi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenCauHoi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MoTa, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DapAn, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DapAn, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DapAn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TracNghiemA, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TracNghiemA, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TracNghiemA, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TracNghiemB, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TracNghiemB, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TracNghiemB, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TracNghiemC, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TracNghiemC, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TracNghiemC, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TracNghiemD, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TracNghiemD, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TracNghiemD, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IDDoanVan, "IDDoanVan", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IDDoanVan", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IDDoanVan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+
+
+<div class="center-block">
+    <div>
+        <div class="p-5 center-block">
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Sửa thông tin câu hỏi!</h1>
+            </div>
+            @using (Html.BeginForm("Edit", "CauHois", FormMethod.Post, new { @class = "user" }))
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.IDCauHoi)
+                <div class="form-group">
+                    <p><b>Nội dung câu hỏi</b></p>
+                    @Html.EditorFor(model => model.TenCauHoi, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Tên câu hỏi" } })
+                    @Html.ValidationMessageFor(model => model.TenCauHoi, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <p><b>Mô tả</b></p>
+                    @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Mô tả" } })
+                    @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <p><b>Trắc nghiệm A</b></p>
+                    @Html.EditorFor(model => model.TracNghiemA, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Trắc nghiệm A" } })
+                    @Html.ValidationMessageFor(model => model.TracNghiemA, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <p><b>Trắc nghiệm B</b></p>
+                    @Html.EditorFor(model => model.TracNghiemB, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Trắc nghiệm B" } })
+                    @Html.ValidationMessageFor(model => model.TracNghiemB, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <p><b>Trắc nghiệm C</b></p>
+                    @Html.EditorFor(model => model.TracNghiemC, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Trắc nghiệm C" } })
+                    @Html.ValidationMessageFor(model => model.TracNghiemC, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <p><b>Trắc nghiệm D</b></p>
+                    @Html.EditorFor(model => model.TracNghiemD, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Trắc nghiệm D" } })
+                    @Html.ValidationMessageFor(model => model.TracNghiemD, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <p><b>Đáp án</b></p>
+                    @Html.DropDownList("DapAn", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DapAn, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <p><b>Độ khó</b></p>
+                    @Html.DropDownList("IDDoKho", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IDDoKho, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <p><b>Đoạn văn</b></p>
+                    @Html.DropDownList("IDDoanVan", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IDDoanVan, "", new { @class = "text-danger" })
+                </div>
+                <button type="submit" value="Save" class="btn btn-google btn-user btn-block">Lưu thông tin</button>
+            </div>
+            }
+            <hr>
+            <div class="text-center">
+                <div>
+                    @Html.ActionLink("Quay trở lại danh sách", "Index", "CauHois", new { @class = "small" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

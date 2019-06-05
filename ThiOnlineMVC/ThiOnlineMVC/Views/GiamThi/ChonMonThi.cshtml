@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BaiThi>
+@{
+    ViewBag.Title = "Danh sách bài thi đã nộp";
+}
+
+
+<div class="card shadow mb-4 text-center">
+    <div class="card-header py-3">
+        <h2 class="m-0 font-weight-bold text-primary">Dách sách bài thi đã nộp</h2>
+    </div>
+    <div class="card-body">
+      
+        <table class="table">
+            <tr>
+                <th>
+                   Mã sinh viên
+                </th>
+                <th>
+                    Họ tên
+                </th>
+                <th>
+                    Tên môn học
+                </th>
+                <th>Tên kỳ thi</th>
+                <th>Mã đề thi</th>
+                <th>Tổng số câu</th>
+                <th> Số câu đúng</th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                       @Html.DisplayFor(modeItem => item.NguoiDung.IDNguoiDung)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NguoiDung.HoTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DeThi.MonHoc.TenMonHoc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelITem => item.DeThi.IDDeThi)
+                    </td>
+                    <td>@Html.DisplayFor(modelitem =>item.DeThi.CaThi.KyThi.TenKyThi)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TongSoCau)</td>
+                    <td>@Html.DisplayFor(modelItem => item.SoCauDung )
+                    </td>
+                   
+                </tr>
+            }
+        </table>
+    </div>
+</div>

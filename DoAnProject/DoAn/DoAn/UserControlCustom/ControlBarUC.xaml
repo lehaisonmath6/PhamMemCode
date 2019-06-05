@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="DoAn.UserControlCustom.ControlBarUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DoAn.UserControlCustom"
+             xmlns:i ="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d" 
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"       
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"     
+        TextElement.FontSize="13"  
+        TextOptions.TextFormattingMode="Ideal"  
+        TextOptions.TextRenderingMode="Auto" 
+        Background="{DynamicResource MaterialDesignPaper}" 
+        FontFamily="{DynamicResource MaterialDesignFont}"
+           
+    Name="ucControlBar"
+             >
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseLeftButtonDown">
+            <i:InvokeCommandAction Command="{Binding MouseMoveWindowCommand}"
+                                  CommandParameter="{Binding ElementName=ucControlBar}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <materialDesign:ColorZone
+            Mode="PrimaryLight"
+           >
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Right" 
+                            Background="Transparent" 
+                            Orientation="Horizontal"
+                           
+                            >
+                  
+                        <Button 
+                            Command="{Binding MaximizedWindowCommand}"
+                            CommandParameter="{Binding ElementName=ucControlBar}"
+                            Background="Transparent" 
+                            BorderThickness="0"
+                            ToolTip="Cut"      
+                            ToolBar.OverflowMode="AsNeeded">
+                            
+                        <materialDesign:PackIcon   
+                                Kind="WindowMaximize" />
+                    </Button>
+                        <Button
+                            Command="{Binding MinimizedWindowCommand}"
+                            CommandParameter="{Binding ElementName=ucControlBar}"
+                            Background="Transparent"
+                             BorderThickness="0"
+                            ToolTip="Cut"      
+                            ToolBar.OverflowMode="AsNeeded">
+                        <materialDesign:PackIcon        
+                                Kind="WindowMinimize" />
+                    </Button>
+                        <Button
+                            Command="{Binding CloseWindowCommand}"
+                            CommandParameter="{Binding ElementName=ucControlBar}"
+                            Background="Transparent"
+                             BorderThickness="0"
+                            ToolTip="Cut"      
+                            ToolBar.OverflowMode="AsNeeded">
+                            <materialDesign:PackIcon        
+                                Kind="WindowClose" />
+                        </Button>
+                   
+                </StackPanel>
+                <StackPanel
+                    Orientation="Horizontal" >
+                    <ToggleButton
+                        Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        Margin="16 0 0 0"
+                        Text="{Binding Tag,ElementName=ucControlBar}"
+                        TextAlignment="Center" 
+                        >
+                        
+                    </TextBlock>
+                </StackPanel>
+            </DockPanel>
+        </materialDesign:ColorZone>
+    </Grid>
+</UserControl>

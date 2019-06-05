@@ -1,0 +1,82 @@
+﻿@model ThiOnlineMVC.CauHoi
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CauHoi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenCauHoi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenCauHoi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DapAn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DapAn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TracNghiemA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TracNghiemA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TracNghiemB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TracNghiemB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TracNghiemC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TracNghiemC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TracNghiemD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TracNghiemD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DoanVan.TenDoanVan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DoanVan.TenDoanVan)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDCauHoi }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

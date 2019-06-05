@@ -1,0 +1,417 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QLKSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="HoaDon">
+          <Key>
+            <PropertyRef Name="IDHoaDon" />
+          </Key>
+          <Property Name="IDHoaDon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThoiGian" Type="datetime" />
+          <Property Name="IDPhong" Type="int" />
+          <Property Name="TongTien" Type="int" />
+          <Property Name="MoTa" Type="nvarchar(max)" />
+          <Property Name="HoTenKhach" Type="nvarchar(max)" />
+          <Property Name="IDDatPhong" Type="int" />
+          <Property Name="SDT" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tblDatPhong">
+          <Key>
+            <PropertyRef Name="IDDatPhong" />
+          </Key>
+          <Property Name="IDDatPhong" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThoiGianBatDau" Type="date" />
+          <Property Name="ThoiGianKetThuc" Type="date" />
+          <Property Name="IDPhong" Type="int" />
+          <Property Name="MoTa" Type="nvarchar(max)" />
+          <Property Name="TongTien" Type="int" />
+          <Property Name="TienDaCoc" Type="int" />
+          <Property Name="IDTrangThaiDat" Type="int" />
+          <Property Name="TenKhachHang" Type="nvarchar(max)" />
+          <Property Name="SDT" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblPhong">
+          <Key>
+            <PropertyRef Name="IDPhong" />
+          </Key>
+          <Property Name="IDPhong" Type="int" Nullable="false" />
+          <Property Name="MoTa" Type="nvarchar(max)" />
+          <Property Name="IDTrangThaiPhong" Type="int" />
+          <Property Name="UrlAnh" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblTrangThaiDat">
+          <Key>
+            <PropertyRef Name="IDTrangThaiDat" />
+          </Key>
+          <Property Name="IDTrangThaiDat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenTrangThaiDat" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblTrangThaiPhong">
+          <Key>
+            <PropertyRef Name="IDTrangThaiPhong" />
+          </Key>
+          <Property Name="IDTrangThaiPhong" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenTrangThai" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_HoaDon_tblDatPhong">
+          <End Role="tblDatPhong" Type="Self.tblDatPhong" Multiplicity="0..1" />
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDatPhong">
+              <PropertyRef Name="IDDatPhong" />
+            </Principal>
+            <Dependent Role="HoaDon">
+              <PropertyRef Name="IDDatPhong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoaDon_tblPhong">
+          <End Role="tblPhong" Type="Self.tblPhong" Multiplicity="0..1" />
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPhong">
+              <PropertyRef Name="IDPhong" />
+            </Principal>
+            <Dependent Role="HoaDon">
+              <PropertyRef Name="IDPhong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDatPhong_tblPhong">
+          <End Role="tblPhong" Type="Self.tblPhong" Multiplicity="0..1" />
+          <End Role="tblDatPhong" Type="Self.tblDatPhong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPhong">
+              <PropertyRef Name="IDPhong" />
+            </Principal>
+            <Dependent Role="tblDatPhong">
+              <PropertyRef Name="IDPhong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDatPhong_tblTrangThaiDat">
+          <End Role="tblTrangThaiDat" Type="Self.tblTrangThaiDat" Multiplicity="0..1" />
+          <End Role="tblDatPhong" Type="Self.tblDatPhong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTrangThaiDat">
+              <PropertyRef Name="IDTrangThaiDat" />
+            </Principal>
+            <Dependent Role="tblDatPhong">
+              <PropertyRef Name="IDTrangThaiDat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhong_tblTrangThaiPhong">
+          <End Role="tblTrangThaiPhong" Type="Self.tblTrangThaiPhong" Multiplicity="0..1" />
+          <End Role="tblPhong" Type="Self.tblPhong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTrangThaiPhong">
+              <PropertyRef Name="IDTrangThaiPhong" />
+            </Principal>
+            <Dependent Role="tblPhong">
+              <PropertyRef Name="IDTrangThaiPhong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLKSModelStoreContainer">
+          <EntitySet Name="HoaDon" EntityType="Self.HoaDon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDatPhong" EntityType="Self.tblDatPhong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPhong" EntityType="Self.tblPhong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTrangThaiDat" EntityType="Self.tblTrangThaiDat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTrangThaiPhong" EntityType="Self.tblTrangThaiPhong" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_HoaDon_tblDatPhong" Association="Self.FK_HoaDon_tblDatPhong">
+            <End Role="tblDatPhong" EntitySet="tblDatPhong" />
+            <End Role="HoaDon" EntitySet="HoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoaDon_tblPhong" Association="Self.FK_HoaDon_tblPhong">
+            <End Role="tblPhong" EntitySet="tblPhong" />
+            <End Role="HoaDon" EntitySet="HoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDatPhong_tblPhong" Association="Self.FK_tblDatPhong_tblPhong">
+            <End Role="tblPhong" EntitySet="tblPhong" />
+            <End Role="tblDatPhong" EntitySet="tblDatPhong" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDatPhong_tblTrangThaiDat" Association="Self.FK_tblDatPhong_tblTrangThaiDat">
+            <End Role="tblTrangThaiDat" EntitySet="tblTrangThaiDat" />
+            <End Role="tblDatPhong" EntitySet="tblDatPhong" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhong_tblTrangThaiPhong" Association="Self.FK_tblPhong_tblTrangThaiPhong">
+            <End Role="tblTrangThaiPhong" EntitySet="tblTrangThaiPhong" />
+            <End Role="tblPhong" EntitySet="tblPhong" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLKSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="HoaDon">
+          <Key>
+            <PropertyRef Name="IDHoaDon" />
+          </Key>
+          <Property Name="IDHoaDon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThoiGian" Type="DateTime" Precision="3" />
+          <Property Name="IDPhong" Type="Int32" />
+          <Property Name="TongTien" Type="Int32" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HoTenKhach" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDDatPhong" Type="Int32" />
+          <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblDatPhong" Relationship="Self.FK_HoaDon_tblDatPhong" FromRole="HoaDon" ToRole="tblDatPhong" />
+          <NavigationProperty Name="tblPhong" Relationship="Self.FK_HoaDon_tblPhong" FromRole="HoaDon" ToRole="tblPhong" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblDatPhong">
+          <Key>
+            <PropertyRef Name="IDDatPhong" />
+          </Key>
+          <Property Name="IDDatPhong" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThoiGianBatDau" Type="DateTime" Precision="0" />
+          <Property Name="ThoiGianKetThuc" Type="DateTime" Precision="0" />
+          <Property Name="IDPhong" Type="Int32" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TongTien" Type="Int32" />
+          <Property Name="TienDaCoc" Type="Int32" />
+          <Property Name="IDTrangThaiDat" Type="Int32" />
+          <Property Name="TenKhachHang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HoaDons" Relationship="Self.FK_HoaDon_tblDatPhong" FromRole="tblDatPhong" ToRole="HoaDon" />
+          <NavigationProperty Name="tblPhong" Relationship="Self.FK_tblDatPhong_tblPhong" FromRole="tblDatPhong" ToRole="tblPhong" />
+          <NavigationProperty Name="tblTrangThaiDat" Relationship="Self.FK_tblDatPhong_tblTrangThaiDat" FromRole="tblDatPhong" ToRole="tblTrangThaiDat" />
+        </EntityType>
+        <EntityType Name="tblPhong">
+          <Key>
+            <PropertyRef Name="IDPhong" />
+          </Key>
+          <Property Name="IDPhong" Type="Int32" Nullable="false" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDTrangThaiPhong" Type="Int32" />
+          <Property Name="UrlAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HoaDons" Relationship="Self.FK_HoaDon_tblPhong" FromRole="tblPhong" ToRole="HoaDon" />
+          <NavigationProperty Name="tblDatPhongs" Relationship="Self.FK_tblDatPhong_tblPhong" FromRole="tblPhong" ToRole="tblDatPhong" />
+          <NavigationProperty Name="tblTrangThaiPhong" Relationship="Self.FK_tblPhong_tblTrangThaiPhong" FromRole="tblPhong" ToRole="tblTrangThaiPhong" />
+        </EntityType>
+        <EntityType Name="tblTrangThaiDat">
+          <Key>
+            <PropertyRef Name="IDTrangThaiDat" />
+          </Key>
+          <Property Name="IDTrangThaiDat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenTrangThaiDat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblDatPhongs" Relationship="Self.FK_tblDatPhong_tblTrangThaiDat" FromRole="tblTrangThaiDat" ToRole="tblDatPhong" />
+        </EntityType>
+        <EntityType Name="tblTrangThaiPhong">
+          <Key>
+            <PropertyRef Name="IDTrangThaiPhong" />
+          </Key>
+          <Property Name="IDTrangThaiPhong" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenTrangThai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblPhongs" Relationship="Self.FK_tblPhong_tblTrangThaiPhong" FromRole="tblTrangThaiPhong" ToRole="tblPhong" />
+        </EntityType>
+        <Association Name="FK_HoaDon_tblDatPhong">
+          <End Role="tblDatPhong" Type="Self.tblDatPhong" Multiplicity="0..1" />
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDatPhong">
+              <PropertyRef Name="IDDatPhong" />
+            </Principal>
+            <Dependent Role="HoaDon">
+              <PropertyRef Name="IDDatPhong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoaDon_tblPhong">
+          <End Role="tblPhong" Type="Self.tblPhong" Multiplicity="0..1" />
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPhong">
+              <PropertyRef Name="IDPhong" />
+            </Principal>
+            <Dependent Role="HoaDon">
+              <PropertyRef Name="IDPhong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDatPhong_tblPhong">
+          <End Role="tblPhong" Type="Self.tblPhong" Multiplicity="0..1" />
+          <End Role="tblDatPhong" Type="Self.tblDatPhong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPhong">
+              <PropertyRef Name="IDPhong" />
+            </Principal>
+            <Dependent Role="tblDatPhong">
+              <PropertyRef Name="IDPhong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDatPhong_tblTrangThaiDat">
+          <End Role="tblTrangThaiDat" Type="Self.tblTrangThaiDat" Multiplicity="0..1" />
+          <End Role="tblDatPhong" Type="Self.tblDatPhong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTrangThaiDat">
+              <PropertyRef Name="IDTrangThaiDat" />
+            </Principal>
+            <Dependent Role="tblDatPhong">
+              <PropertyRef Name="IDTrangThaiDat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhong_tblTrangThaiPhong">
+          <End Role="tblTrangThaiPhong" Type="Self.tblTrangThaiPhong" Multiplicity="0..1" />
+          <End Role="tblPhong" Type="Self.tblPhong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTrangThaiPhong">
+              <PropertyRef Name="IDTrangThaiPhong" />
+            </Principal>
+            <Dependent Role="tblPhong">
+              <PropertyRef Name="IDTrangThaiPhong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLKSEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="HoaDons" EntityType="Self.HoaDon" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tblDatPhongs" EntityType="Self.tblDatPhong" />
+          <EntitySet Name="tblPhongs" EntityType="Self.tblPhong" />
+          <EntitySet Name="tblTrangThaiDats" EntityType="Self.tblTrangThaiDat" />
+          <EntitySet Name="tblTrangThaiPhongs" EntityType="Self.tblTrangThaiPhong" />
+          <AssociationSet Name="FK_HoaDon_tblDatPhong" Association="Self.FK_HoaDon_tblDatPhong">
+            <End Role="tblDatPhong" EntitySet="tblDatPhongs" />
+            <End Role="HoaDon" EntitySet="HoaDons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoaDon_tblPhong" Association="Self.FK_HoaDon_tblPhong">
+            <End Role="tblPhong" EntitySet="tblPhongs" />
+            <End Role="HoaDon" EntitySet="HoaDons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDatPhong_tblPhong" Association="Self.FK_tblDatPhong_tblPhong">
+            <End Role="tblPhong" EntitySet="tblPhongs" />
+            <End Role="tblDatPhong" EntitySet="tblDatPhongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDatPhong_tblTrangThaiDat" Association="Self.FK_tblDatPhong_tblTrangThaiDat">
+            <End Role="tblTrangThaiDat" EntitySet="tblTrangThaiDats" />
+            <End Role="tblDatPhong" EntitySet="tblDatPhongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhong_tblTrangThaiPhong" Association="Self.FK_tblPhong_tblTrangThaiPhong">
+            <End Role="tblTrangThaiPhong" EntitySet="tblTrangThaiPhongs" />
+            <End Role="tblPhong" EntitySet="tblPhongs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLKSModelStoreContainer" CdmEntityContainer="QLKSEntities1">
+          <EntitySetMapping Name="HoaDons">
+            <EntityTypeMapping TypeName="QLKSModel.HoaDon">
+              <MappingFragment StoreEntitySet="HoaDon">
+                <ScalarProperty Name="IDHoaDon" ColumnName="IDHoaDon" />
+                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+                <ScalarProperty Name="IDPhong" ColumnName="IDPhong" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="HoTenKhach" ColumnName="HoTenKhach" />
+                <ScalarProperty Name="IDDatPhong" ColumnName="IDDatPhong" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QLKSModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDatPhongs">
+            <EntityTypeMapping TypeName="QLKSModel.tblDatPhong">
+              <MappingFragment StoreEntitySet="tblDatPhong">
+                <ScalarProperty Name="IDDatPhong" ColumnName="IDDatPhong" />
+                <ScalarProperty Name="ThoiGianBatDau" ColumnName="ThoiGianBatDau" />
+                <ScalarProperty Name="ThoiGianKetThuc" ColumnName="ThoiGianKetThuc" />
+                <ScalarProperty Name="IDPhong" ColumnName="IDPhong" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+                <ScalarProperty Name="TienDaCoc" ColumnName="TienDaCoc" />
+                <ScalarProperty Name="IDTrangThaiDat" ColumnName="IDTrangThaiDat" />
+                <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPhongs">
+            <EntityTypeMapping TypeName="QLKSModel.tblPhong">
+              <MappingFragment StoreEntitySet="tblPhong">
+                <ScalarProperty Name="IDPhong" ColumnName="IDPhong" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="IDTrangThaiPhong" ColumnName="IDTrangThaiPhong" />
+                <ScalarProperty Name="UrlAnh" ColumnName="UrlAnh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTrangThaiDats">
+            <EntityTypeMapping TypeName="QLKSModel.tblTrangThaiDat">
+              <MappingFragment StoreEntitySet="tblTrangThaiDat">
+                <ScalarProperty Name="IDTrangThaiDat" ColumnName="IDTrangThaiDat" />
+                <ScalarProperty Name="TenTrangThaiDat" ColumnName="TenTrangThaiDat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTrangThaiPhongs">
+            <EntityTypeMapping TypeName="QLKSModel.tblTrangThaiPhong">
+              <MappingFragment StoreEntitySet="tblTrangThaiPhong">
+                <ScalarProperty Name="IDTrangThaiPhong" ColumnName="IDTrangThaiPhong" />
+                <ScalarProperty Name="TenTrangThai" ColumnName="TenTrangThai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

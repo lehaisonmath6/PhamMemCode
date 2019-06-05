@@ -1,0 +1,94 @@
+﻿@model ThiOnlineMVC.ChuongHoc
+
+@{
+    ViewBag.Title = "Chi tiết chương học";
+}
+
+<div class="row text-center">
+    <!-- Border Left Utilities -->
+    <div class="col-lg-4">
+        <div class="card mb-4 py-3 border-left-primary">
+            <div class="card-body">
+                <div class="card-header py-3">
+                    <h4 class="m-0 font-weight-bold text-primary">Chi tiết chương học</h4>
+                </div>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TenChuong)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TenChuong)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MoTa)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MoTa)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MonHoc.TenMonHoc)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.MonHoc.TenMonHoc)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MonHoc.Khoa.TenKhoa)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.MonHoc.Khoa.TenKhoa)
+                    </dd>
+                </dl>
+                <p>
+                    @Html.ActionLink("Sửa", "Edit", new { id = Model.IDChuongHoc }) |
+                    @Html.ActionLink("Trở lại danh sách", "Index")
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Border Bottom Utilities -->
+    <div class="col-lg-8">
+        <div class="card mb-4 py-3 border-bottom-primary">
+            <div class="card-body">
+                <div class="card-header py-3">
+                    <h4 class="m-0 font-weight-bold text-primary">Danh sách đoạn văn trong chương học</h4>
+                </div>
+                <a href="@Url.Action("Create","DoanVans",new { id = Model.IDChuongHoc })">Thêm đoạn văn</a>
+             @*   @Html.ActionLink("Thêm đoạn văn", "Create", "DoanVans",new { id = Model.IDChuongHoc })*@
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Tên câu hỏi")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Mô tả")
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model.DoanVans)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TenDoanVan)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MoTa)
+                            </td>
+                            
+                            <td>
+                                @Html.ActionLink("Sửa", "Edit", "DoanVans", new { id = item.IDDoanVan }, null) |
+                                @Html.ActionLink("Chi tiết", "Details", "DoanVans", new { id = item.IDDoanVan }, null) |
+                                @Html.ActionLink("Xóa", "Delete", "DoanVans", new { id = item.IDDoanVan }, null)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

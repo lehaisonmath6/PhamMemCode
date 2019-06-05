@@ -1,0 +1,46 @@
+﻿@model ThiOnlineMVC.NguoiDung
+
+@{
+    ViewBag.Title = "Xóa sinh viên";
+}
+
+<div class="text-center">
+    <h2>Xóa sinh viên</h2>
+
+    <h3>Bạn có chắc chắn muốn xóa?</h3>
+
+
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+               Họ và tên
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HoTen)
+            </dd>
+
+            <dt>
+                Tên đăng nhập
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TenDangNhap)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Xóa" class="btn btn-default" /> |
+                @Html.ActionLink("Quay trở lại danh sách khoa", "Index")
+            </div>
+        }
+    </div>
+
+</div>

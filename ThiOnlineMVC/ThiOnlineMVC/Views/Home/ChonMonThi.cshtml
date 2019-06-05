@@ -1,0 +1,47 @@
+﻿@model ThiOnlineMVC.Models.ChonMonThiModel
+@{
+    ViewBag.Title = "Chọn môn thi";
+}
+
+@{
+    var sinhvien = Session[ThiOnlineMVC.Common.CommonConstants.NGUOIDUNG_SESSION] as NguoiDung;
+    ThiOnlineEntities thiOnlineEntities = new ThiOnlineEntities();
+}
+
+<div class="container">
+    <div class="SelQuiz">
+        <div class="panel panel-default" style="width: 37%; margin: 20% 32%;">
+            <div class="panel-heading">Chọn môn thi để bắt đầu thi</div>
+            <div class="panel-body">
+                @using (Html.BeginForm("ChonMonThi", "Home", FormMethod.Post))
+                {
+                <div class="form-group">
+                    <p>Chọn kỳ thi</p>
+                    @Html.DropDownList("IDKyThi", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <select id="IDCaThi" name="IDCaThi" class="form-control">
+                        <option value="" selected="selected">Chọn ca thi</option>
+                    </select>
+                </div>
+
+                    <div class="form-group">
+                        <select id="IDKhoa" class="form-control">
+                            <option value="" selected="selected">Chọn khoa</option>
+                            @foreach (var khoa in thiOnlineEntities.Khoas)
+                            {
+                                <option value="@khoa.IDKhoa">@khoa.TenKhoa</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="IDMonHoc" name="IDMonHoc" class="form-control">
+                            <option value="" selected="selected">Chọn môn học</option>
+                        </select>
+                    </div>
+                    <button type="submit" id="Enter" class="btn btn-success btn-lg" style="width:100%;"><span class="glyphicon glyphicon-ok"></span>   Bắt đầu thi </button>
+                }
+            </div>
+        </div>
+    </div>
+</div>  <!-- END CONTAINER -->

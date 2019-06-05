@@ -1,0 +1,64 @@
+﻿@model ThiOnlineMVC.DeThi
+
+@{
+    ViewBag.Title = "Xóa đề thi";
+}
+
+<div class="text-center">
+    <h2>Xóa đề thi</h2>
+    <h3>Bạn có chắc chắn muốn xóa?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Mã đề
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TenDe)
+            </dd>
+
+            <dt>
+                Mô tả
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MoTa)
+            </dd>
+
+            <dt>
+                Thời gian
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ThoiGian)
+            </dd>
+            <dt>
+                Môn thi
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MonHoc.TenMonHoc)
+            </dd>
+            <dt>
+                Ca thi
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CaThi.TenCa)
+            </dd>
+            <dt>
+                Kỳ thi
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CaThi.KyThi.TenKyThi)
+            </dd>
+        </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Xóa" class="btn btn-default" /> |
+                @Html.ActionLink("Quay trở lại danh sách", "Index")
+            </div>
+        }
+    </div>
+</div>

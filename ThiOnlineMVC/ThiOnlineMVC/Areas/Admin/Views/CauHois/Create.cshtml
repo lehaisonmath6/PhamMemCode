@@ -1,0 +1,115 @@
+﻿@model ThiOnlineMVC.CauHoi
+
+@{
+    ViewBag.Title = "Tạo câu hỏi";
+    ThiOnlineMVC.ThiOnlineEntities thiOnlineEntities = new ThiOnlineMVC.ThiOnlineEntities();
+}
+
+
+
+<div class="center-block">
+    <div>
+        <div class="p-5 center-block">
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Tạo mới câu hỏi!</h1>
+            </div>
+            @using (Html.BeginForm("Create", "CauHois", FormMethod.Post, new { @class = "user" }))
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @Html.EditorFor(model => model.TenCauHoi, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Tên câu hỏi" } })
+                    @Html.ValidationMessageFor(model => model.TenCauHoi, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group">
+
+                    @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Mô tả" } })
+                    @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group">
+
+                    @Html.EditorFor(model => model.TracNghiemA, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Trắc nghiệm A" } })
+                    @Html.ValidationMessageFor(model => model.TracNghiemA, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group">
+
+                    @Html.EditorFor(model => model.TracNghiemB, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Trắc nghiệm B" } })
+                    @Html.ValidationMessageFor(model => model.TracNghiemB, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group">
+
+                    @Html.EditorFor(model => model.TracNghiemC, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Trắc nghiệm C" } })
+                    @Html.ValidationMessageFor(model => model.TracNghiemC, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group">
+
+                    @Html.EditorFor(model => model.TracNghiemD, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Trắc nghiệm D" } })
+                    @Html.ValidationMessageFor(model => model.TracNghiemD, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group">
+                    <p>Đáp án</p>
+                    @Html.DropDownList("DapAn", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DapAn, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <p>Độ khó</p>
+                    @Html.DropDownList("IDDoKho", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IDDoKho, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <select id="IDKhoa" class="form-control">
+                        <option value="" selected="selected">Chọn khoa</option>
+                        @foreach (var khoa in thiOnlineEntities.Khoas)
+                        {
+                            <option value="@khoa.IDKhoa">@khoa.TenKhoa</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="IDMonHoc" name="IDMonHoc" class="form-control">
+                        <option value="" selected="selected">Chọn môn học</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="IDChuongHoc" name="IDChuongHoc" class="form-control">
+                        <option value="" selected="selected">Chọn chương học</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="IDDoanVan" name="IDDoanVan" class="form-control">
+                        <option value="" selected="selected">Chọn đoạn văn</option>
+                    </select>
+                </div>
+                <button type="submit" value="Create" class="btn btn-google btn-user btn-block">Tạo câu hỏi</button>
+            </div>
+            }
+            <hr>
+            <div class="text-center">
+                <div>
+                    @Html.ActionLink("Quay trở lại danh sách", "Index", "ChuongHocs", new { @class = "small" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<select id="dropdown1">
+        <option value="" selected="true">Select country</option>
+        @foreach (var khoa in thiOnlineEntities.Khoas)
+        {
+            <option value="@khoa.IDKhoa">@khoa.TenKhoa</option>
+        }
+    </select><br />
+    <select id="dropdown2"></select>*@
+   
+</div>
+

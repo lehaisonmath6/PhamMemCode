@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="QLKS.QuanLyDatPhongUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QLKS"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto"
+            Background="{DynamicResource MaterialDesignPaper}"
+            FontFamily="{DynamicResource MaterialDesignFont}"
+             
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <!--<uc:ControlBarUC Tag="{Binding Title,ElementName=loginWindow}"></uc:ControlBarUC>-->
+        </Grid>
+        <Grid Grid.Row="1" Margin="1" Width="auto">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+               
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <materialDesign:Card Grid.Row="0" Margin="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+
+
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0"
+                    Margin="5"
+                    x:Name="txtIDDatPhong"                      
+                    materialDesign:HintAssist.Hint="Mã đặt phòng"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <ComboBox Grid.Column="1" Margin="0 0 0 -9" materialDesign:HintAssist.Hint="Số phòng" 
+                              x:Name="cboSoPhong" IsSynchronizedWithCurrentItem="False" DisplayMemberPath="IDPhong" 
+                              SelectedValuePath="IDPhong" />
+                    <TextBox Grid.Column="2"
+                    Margin="5"
+                    x:Name="txtMoTa"                      
+                    materialDesign:HintAssist.Hint="Mô tả"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+                    <DatePicker Grid.Column="3"
+                        x:Name="pdThoiGianBatDau"
+                        Width="100"
+                        materialDesign:HintAssist.Hint="Ngày bắt đầu"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                    <DatePicker Grid.Column="4"
+                        x:Name="pdThoiGianKetThuc"
+                        Width="100"
+                        materialDesign:HintAssist.Hint="Ngày kết thúc"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                    <TextBox Grid.Column="5"
+                    Margin="5"
+                    x:Name="txtTongTien"                      
+                    materialDesign:HintAssist.Hint="Tổng tiền"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Grid.Column="6"
+                    Margin="6"
+                    x:Name="txtTienDaCoc"                      
+                    materialDesign:HintAssist.Hint="Tiền đã cọc"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"  />
+                    <TextBox Grid.Column="7"
+                    Margin="5"
+                    x:Name="txtTenKhachHang"                      
+                    materialDesign:HintAssist.Hint="Tên khách hàng"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"  />
+                    <TextBox Grid.Column="8"
+                    Margin="5"
+                    x:Name="txtSDT"                      
+                    materialDesign:HintAssist.Hint="Số điện thoại"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"  />
+                    <ComboBox Grid.Column="9" Margin="0 0 0 -9" materialDesign:HintAssist.Hint="Trạng thái đặt" 
+                              x:Name="cboTrangThaiDat" IsSynchronizedWithCurrentItem="False" DisplayMemberPath="TenTrangThai" 
+                              SelectedValuePath="IDTrangThaiDat" />
+                </Grid>
+            </materialDesign:Card>
+            <materialDesign:Card Grid.Row="1" Margin="5">
+                <WrapPanel>
+                    <Button x:Name="btnThem" Content="Thêm" Margin="5" Width="100" Click="BtnThem_Click"></Button>
+                    <Button x:Name="btnSua" Content="Sửa" Margin="5" Width="100"  Click="BtnSua_Click"></Button>
+                    <Button x:Name="btnXoa" Content="Xóa" Margin="5" Width="100" Click="BtnXoa_Click"></Button>
+                    <Button x:Name="btnLuu" Content="Lưu" Margin="5" Width="100" Click="BtnLuu_Click" ></Button>
+                    <Button x:Name="btnHuy" Content="Hủy" Margin="5" Width="100" Click="BtnHuy_Click" ></Button>
+                </WrapPanel>
+            </materialDesign:Card>
+         
+            <materialDesign:Card Grid.Row="2" Margin="5" VerticalAlignment="Stretch">
+                <ScrollViewer VerticalScrollBarVisibility="Visible">
+                    <ListView x:Name="lsvData"  PreviewMouseLeftButtonUp ="LsvData_PreviewMouseLeftButtonUp">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Mã đặt phòng" DisplayMemberBinding="{Binding IDDatPhong}"></GridViewColumn>
+                                <GridViewColumn Header="Số phòng" DisplayMemberBinding="{Binding IDPhong}"></GridViewColumn>
+                                <GridViewColumn Header="Ngày bắt đầu" DisplayMemberBinding="{Binding ThoiGianBatDau}"></GridViewColumn>
+                                <GridViewColumn Header="Ngày kết thúc" DisplayMemberBinding="{Binding ThoiGianKetThuc}"></GridViewColumn>
+                                <GridViewColumn Header="Mô tả" DisplayMemberBinding="{Binding MoTa}"></GridViewColumn>
+                                <GridViewColumn Header="Tên khách hàng" DisplayMemberBinding="{Binding TenKhachHang}"></GridViewColumn>
+                                <GridViewColumn Header="Số điện thoại" DisplayMemberBinding="{Binding SDT}"></GridViewColumn>
+                                <GridViewColumn Header="Tổng tiền" DisplayMemberBinding="{Binding TongTien}"></GridViewColumn>
+                                <GridViewColumn Header="Tiền đặt cọc" DisplayMemberBinding="{Binding TienDatCoc}"></GridViewColumn>
+                                <GridViewColumn Header="Trạng thái" DisplayMemberBinding="{Binding tblTrangThaiDat.TenTrangThai}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+            </materialDesign:Card>
+
+        </Grid>
+    </Grid>
+</UserControl>

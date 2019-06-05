@@ -1,0 +1,10 @@
+D:\WpfQLSpa\Test\obj\Debug\Test.csprojAssemblyReference.cache
+D:\WpfQLSpa\Test\obj\Debug\Test.csproj.CoreCompileInputs.cache
+D:\WpfQLSpa\Test\bin\Debug\Test.exe.config
+D:\WpfQLSpa\Test\bin\Debug\Test.exe
+D:\WpfQLSpa\Test\bin\Debug\Test.pdb
+D:\WpfQLSpa\Test\bin\Debug\Newtonsoft.Json.dll
+D:\WpfQLSpa\Test\bin\Debug\Newtonsoft.Json.xml
+D:\WpfQLSpa\Test\obj\Debug\Test.csproj.CopyComplete
+D:\WpfQLSpa\Test\obj\Debug\Test.exe
+D:\WpfQLSpa\Test\obj\Debug\Test.pdb

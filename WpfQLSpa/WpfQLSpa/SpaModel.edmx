@@ -1,0 +1,782 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QLSpaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DichVu">
+          <Key>
+            <PropertyRef Name="IDDichVu" />
+          </Key>
+          <Property Name="IDDichVu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenDichVu" Type="nvarchar(max)" />
+          <Property Name="DonGia" Type="int" />
+          <Property Name="MoTa" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="DichVu_SanPham">
+          <Key>
+            <PropertyRef Name="IDDichVu" />
+            <PropertyRef Name="IDSanPham" />
+          </Key>
+          <Property Name="IDDichVu" Type="int" Nullable="false" />
+          <Property Name="IDSanPham" Type="int" Nullable="false" />
+          <Property Name="SoLuong" Type="int" />
+          <Property Name="DonViTinh" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="HangSanXuat">
+          <Key>
+            <PropertyRef Name="IDHangSanXuat" />
+          </Key>
+          <Property Name="IDHangSanXuat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenHang" Type="nvarchar(max)" />
+          <Property Name="MoTa" Type="nvarchar(max)" />
+          <Property Name="DiaChi" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="KhachHang">
+          <Key>
+            <PropertyRef Name="IDKhachHang" />
+          </Key>
+          <Property Name="IDKhachHang" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar(max)" />
+          <Property Name="SDT" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="SinhNhat" Type="date" />
+          <Property Name="GioiTinh" Type="bit" />
+          <Property Name="CMT" Type="nvarchar(max)" />
+          <Property Name="DiaChi" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="LichChamSoc">
+          <Key>
+            <PropertyRef Name="IDLichChamSoc" />
+          </Key>
+          <Property Name="IDLichChamSoc" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IDLieuTrinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="ThoiGian" Type="datetime" />
+          <Property Name="NoiDung" Type="nvarchar(max)" />
+          <Property Name="IDTrangThaiChamSoc" Type="int" />
+        </EntityType>
+        <EntityType Name="LichHen">
+          <Key>
+            <PropertyRef Name="IDLichHen" />
+          </Key>
+          <Property Name="IDLichHen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDKhachHang" Type="nvarchar" MaxLength="50" />
+          <Property Name="ThoiGianHen" Type="datetime" />
+          <Property Name="ThoiGianBaoTruoc" Type="datetime" />
+          <Property Name="NoiDung" Type="nvarchar(max)" />
+          <Property Name="IDTrangThaiHen" Type="int" />
+        </EntityType>
+        <EntityType Name="LichLieuTrinh">
+          <Key>
+            <PropertyRef Name="IDLichLieuTrinh" />
+          </Key>
+          <Property Name="IDLichLieuTrinh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDLieuTrinh" Type="int" />
+          <Property Name="ThoiGianDieuTri" Type="datetime" />
+          <Property Name="ThoiGianBaoTruoc" Type="datetime" />
+          <Property Name="MoTa" Type="nvarchar(max)" />
+          <Property Name="DaThucHien" Type="bit" />
+        </EntityType>
+        <EntityType Name="LieuTrinh">
+          <Key>
+            <PropertyRef Name="IDLieuTrinh" />
+          </Key>
+          <Property Name="IDLieuTrinh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDDichVu" Type="int" />
+          <Property Name="MoTa" Type="nvarchar(max)" />
+          <Property Name="HoaHong" Type="int" />
+          <Property Name="TongSoBuoi" Type="int" />
+          <Property Name="SoBuoiDaSuDung" Type="int" />
+          <Property Name="TongTien" Type="int" />
+          <Property Name="NgayMua" Type="date" />
+          <Property Name="SoTienDaThanhToan" Type="int" />
+          <Property Name="SoTienChuaThanhToan" Type="int" />
+          <Property Name="IDKhachhang" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDNhanVien" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="NhanVien">
+          <Key>
+            <PropertyRef Name="IDNhanVien" />
+          </Key>
+          <Property Name="IDNhanVien" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar(max)" />
+          <Property Name="SDT" Type="nvarchar(max)" />
+          <Property Name="CMT" Type="nvarchar(max)" />
+          <Property Name="DiaChi" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="GioiTinh" Type="bit" />
+          <Property Name="SinhNhat" Type="date" />
+        </EntityType>
+        <EntityType Name="SanPham">
+          <Key>
+            <PropertyRef Name="IDSanPham" />
+          </Key>
+          <Property Name="IDSanPham" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenSanPham" Type="nvarchar(max)" />
+          <Property Name="DonVi" Type="nvarchar(max)" />
+          <Property Name="DonGia" Type="int" />
+          <Property Name="MoTa" Type="nvarchar(max)" />
+          <Property Name="UrlAnh" Type="nvarchar(max)" />
+          <Property Name="IDHangSanXuat" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TrangThaiHen">
+          <Key>
+            <PropertyRef Name="IDTrangThaiHen" />
+          </Key>
+          <Property Name="IDTrangThaiHen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenTrangThai" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_DichVu_SanPham_DichVu">
+          <End Role="DichVu" Type="Self.DichVu" Multiplicity="1" />
+          <End Role="DichVu_SanPham" Type="Self.DichVu_SanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DichVu">
+              <PropertyRef Name="IDDichVu" />
+            </Principal>
+            <Dependent Role="DichVu_SanPham">
+              <PropertyRef Name="IDDichVu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DichVu_SanPham_SanPham">
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+          <End Role="DichVu_SanPham" Type="Self.DichVu_SanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPham">
+              <PropertyRef Name="IDSanPham" />
+            </Principal>
+            <Dependent Role="DichVu_SanPham">
+              <PropertyRef Name="IDSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LichHen_KhachHang">
+          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+          <End Role="LichHen" Type="Self.LichHen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhachHang">
+              <PropertyRef Name="IDKhachHang" />
+            </Principal>
+            <Dependent Role="LichHen">
+              <PropertyRef Name="IDKhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LichHen_TrangThaiHen">
+          <End Role="TrangThaiHen" Type="Self.TrangThaiHen" Multiplicity="0..1" />
+          <End Role="LichHen" Type="Self.LichHen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrangThaiHen">
+              <PropertyRef Name="IDTrangThaiHen" />
+            </Principal>
+            <Dependent Role="LichHen">
+              <PropertyRef Name="IDTrangThaiHen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LichLieuTrinh_LieuTrinh">
+          <End Role="LieuTrinh" Type="Self.LieuTrinh" Multiplicity="0..1" />
+          <End Role="LichLieuTrinh" Type="Self.LichLieuTrinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LieuTrinh">
+              <PropertyRef Name="IDLieuTrinh" />
+            </Principal>
+            <Dependent Role="LichLieuTrinh">
+              <PropertyRef Name="IDLieuTrinh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LieuTrinh_DichVu1">
+          <End Role="DichVu" Type="Self.DichVu" Multiplicity="0..1" />
+          <End Role="LieuTrinh" Type="Self.LieuTrinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DichVu">
+              <PropertyRef Name="IDDichVu" />
+            </Principal>
+            <Dependent Role="LieuTrinh">
+              <PropertyRef Name="IDDichVu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LieuTrinh_KhachHang">
+          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+          <End Role="LieuTrinh" Type="Self.LieuTrinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhachHang">
+              <PropertyRef Name="IDKhachHang" />
+            </Principal>
+            <Dependent Role="LieuTrinh">
+              <PropertyRef Name="IDKhachhang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LieuTrinh_NhanVien">
+          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+          <End Role="LieuTrinh" Type="Self.LieuTrinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhanVien">
+              <PropertyRef Name="IDNhanVien" />
+            </Principal>
+            <Dependent Role="LieuTrinh">
+              <PropertyRef Name="IDNhanVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SanPham_HangSanXuat">
+          <End Role="HangSanXuat" Type="Self.HangSanXuat" Multiplicity="0..1" />
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HangSanXuat">
+              <PropertyRef Name="IDHangSanXuat" />
+            </Principal>
+            <Dependent Role="SanPham">
+              <PropertyRef Name="IDHangSanXuat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLSpaModelStoreContainer">
+          <EntitySet Name="DichVu" EntityType="Self.DichVu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DichVu_SanPham" EntityType="Self.DichVu_SanPham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HangSanXuat" EntityType="Self.HangSanXuat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LichChamSoc" EntityType="Self.LichChamSoc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LichHen" EntityType="Self.LichHen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LichLieuTrinh" EntityType="Self.LichLieuTrinh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LieuTrinh" EntityType="Self.LieuTrinh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrangThaiHen" EntityType="Self.TrangThaiHen" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DichVu_SanPham_DichVu" Association="Self.FK_DichVu_SanPham_DichVu">
+            <End Role="DichVu" EntitySet="DichVu" />
+            <End Role="DichVu_SanPham" EntitySet="DichVu_SanPham" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DichVu_SanPham_SanPham" Association="Self.FK_DichVu_SanPham_SanPham">
+            <End Role="SanPham" EntitySet="SanPham" />
+            <End Role="DichVu_SanPham" EntitySet="DichVu_SanPham" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LichHen_KhachHang" Association="Self.FK_LichHen_KhachHang">
+            <End Role="KhachHang" EntitySet="KhachHang" />
+            <End Role="LichHen" EntitySet="LichHen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LichHen_TrangThaiHen" Association="Self.FK_LichHen_TrangThaiHen">
+            <End Role="TrangThaiHen" EntitySet="TrangThaiHen" />
+            <End Role="LichHen" EntitySet="LichHen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LichLieuTrinh_LieuTrinh" Association="Self.FK_LichLieuTrinh_LieuTrinh">
+            <End Role="LieuTrinh" EntitySet="LieuTrinh" />
+            <End Role="LichLieuTrinh" EntitySet="LichLieuTrinh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LieuTrinh_DichVu1" Association="Self.FK_LieuTrinh_DichVu1">
+            <End Role="DichVu" EntitySet="DichVu" />
+            <End Role="LieuTrinh" EntitySet="LieuTrinh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LieuTrinh_KhachHang" Association="Self.FK_LieuTrinh_KhachHang">
+            <End Role="KhachHang" EntitySet="KhachHang" />
+            <End Role="LieuTrinh" EntitySet="LieuTrinh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LieuTrinh_NhanVien" Association="Self.FK_LieuTrinh_NhanVien">
+            <End Role="NhanVien" EntitySet="NhanVien" />
+            <End Role="LieuTrinh" EntitySet="LieuTrinh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SanPham_HangSanXuat" Association="Self.FK_SanPham_HangSanXuat">
+            <End Role="HangSanXuat" EntitySet="HangSanXuat" />
+            <End Role="SanPham" EntitySet="SanPham" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLSpaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="QLSpaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DichVus" EntityType="QLSpaModel.DichVu" />
+          <EntitySet Name="DichVu_SanPham" EntityType="QLSpaModel.DichVu_SanPham" />
+          <EntitySet Name="HangSanXuats" EntityType="QLSpaModel.HangSanXuat" />
+          <EntitySet Name="KhachHangs" EntityType="QLSpaModel.KhachHang" />
+          <EntitySet Name="LichChamSocs" EntityType="QLSpaModel.LichChamSoc" />
+          <EntitySet Name="NhanViens" EntityType="QLSpaModel.NhanVien" />
+          <EntitySet Name="SanPhams" EntityType="QLSpaModel.SanPham" />
+          <EntitySet Name="sysdiagrams" EntityType="QLSpaModel.sysdiagram" />
+          <AssociationSet Name="FK_DichVu_SanPham_DichVu" Association="QLSpaModel.FK_DichVu_SanPham_DichVu">
+            <End Role="DichVu" EntitySet="DichVus" />
+            <End Role="DichVu_SanPham" EntitySet="DichVu_SanPham" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DichVu_SanPham_SanPham" Association="QLSpaModel.FK_DichVu_SanPham_SanPham">
+            <End Role="SanPham" EntitySet="SanPhams" />
+            <End Role="DichVu_SanPham" EntitySet="DichVu_SanPham" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SanPham_HangSanXuat" Association="QLSpaModel.FK_SanPham_HangSanXuat">
+            <End Role="HangSanXuat" EntitySet="HangSanXuats" />
+            <End Role="SanPham" EntitySet="SanPhams" />
+          </AssociationSet>
+          <EntitySet Name="TrangThaiHens" EntityType="QLSpaModel.TrangThaiHen" />
+          <EntitySet Name="LichHens" EntityType="QLSpaModel.LichHen" />
+          <AssociationSet Name="FK_LichHen_TrangThaiHen" Association="QLSpaModel.FK_LichHen_TrangThaiHen">
+            <End Role="TrangThaiHen" EntitySet="TrangThaiHens" />
+            <End Role="LichHen" EntitySet="LichHens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LichHen_KhachHang" Association="QLSpaModel.FK_LichHen_KhachHang">
+            <End Role="KhachHang" EntitySet="KhachHangs" />
+            <End Role="LichHen" EntitySet="LichHens" />
+          </AssociationSet>
+          <EntitySet Name="LieuTrinhs" EntityType="QLSpaModel.LieuTrinh" />
+          <AssociationSet Name="FK_LieuTrinh_DichVu1" Association="QLSpaModel.FK_LieuTrinh_DichVu1">
+            <End Role="DichVu" EntitySet="DichVus" />
+            <End Role="LieuTrinh" EntitySet="LieuTrinhs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LieuTrinh_KhachHang" Association="QLSpaModel.FK_LieuTrinh_KhachHang">
+            <End Role="KhachHang" EntitySet="KhachHangs" />
+            <End Role="LieuTrinh" EntitySet="LieuTrinhs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LieuTrinh_NhanVien" Association="QLSpaModel.FK_LieuTrinh_NhanVien">
+            <End Role="NhanVien" EntitySet="NhanViens" />
+            <End Role="LieuTrinh" EntitySet="LieuTrinhs" />
+          </AssociationSet>
+          <EntitySet Name="LichLieuTrinhs" EntityType="QLSpaModel.LichLieuTrinh" />
+          <AssociationSet Name="FK_LichLieuTrinh_LieuTrinh" Association="QLSpaModel.FK_LichLieuTrinh_LieuTrinh">
+            <End Role="LieuTrinh" EntitySet="LieuTrinhs" />
+            <End Role="LichLieuTrinh" EntitySet="LichLieuTrinhs" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="DichVu">
+          <Key>
+            <PropertyRef Name="IDDichVu" />
+          </Key>
+          <Property Name="IDDichVu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenDichVu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DonGia" Type="Int32" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DichVu_SanPham" Relationship="QLSpaModel.FK_DichVu_SanPham_DichVu" FromRole="DichVu" ToRole="DichVu_SanPham" />
+          <NavigationProperty Name="LieuTrinhs" Relationship="QLSpaModel.FK_LieuTrinh_DichVu1" FromRole="DichVu" ToRole="LieuTrinh" />
+        </EntityType>
+        <EntityType Name="DichVu_SanPham">
+          <Key>
+            <PropertyRef Name="IDDichVu" />
+            <PropertyRef Name="IDSanPham" />
+          </Key>
+          <Property Name="IDDichVu" Type="Int32" Nullable="false" />
+          <Property Name="IDSanPham" Type="Int32" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" />
+          <Property Name="DonViTinh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DichVu" Relationship="QLSpaModel.FK_DichVu_SanPham_DichVu" FromRole="DichVu_SanPham" ToRole="DichVu" />
+          <NavigationProperty Name="SanPham" Relationship="QLSpaModel.FK_DichVu_SanPham_SanPham" FromRole="DichVu_SanPham" ToRole="SanPham" />
+        </EntityType>
+        <EntityType Name="HangSanXuat">
+          <Key>
+            <PropertyRef Name="IDHangSanXuat" />
+          </Key>
+          <Property Name="IDHangSanXuat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenHang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SanPhams" Relationship="QLSpaModel.FK_SanPham_HangSanXuat" FromRole="HangSanXuat" ToRole="SanPham" />
+        </EntityType>
+        <EntityType Name="KhachHang">
+          <Key>
+            <PropertyRef Name="IDKhachHang" />
+          </Key>
+          <Property Name="IDKhachHang" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HoTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SinhNhat" Type="DateTime" Precision="0" />
+          <Property Name="GioiTinh" Type="Boolean" />
+          <Property Name="CMT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LichHens" Relationship="QLSpaModel.FK_LichHen_KhachHang" FromRole="KhachHang" ToRole="LichHen" />
+          <NavigationProperty Name="LieuTrinhs" Relationship="QLSpaModel.FK_LieuTrinh_KhachHang" FromRole="KhachHang" ToRole="LieuTrinh" />
+        </EntityType>
+        <EntityType Name="LichChamSoc">
+          <Key>
+            <PropertyRef Name="IDLichChamSoc" />
+          </Key>
+          <Property Name="IDLichChamSoc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDLieuTrinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiGian" Type="DateTime" Precision="3" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDTrangThaiChamSoc" Type="Int32" />
+        </EntityType>
+        <EntityType Name="NhanVien">
+          <Key>
+            <PropertyRef Name="IDNhanVien" />
+          </Key>
+          <Property Name="IDNhanVien" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HoTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CMT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GioiTinh" Type="Boolean" />
+          <Property Name="SinhNhat" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="LieuTrinhs" Relationship="QLSpaModel.FK_LieuTrinh_NhanVien" FromRole="NhanVien" ToRole="LieuTrinh" />
+        </EntityType>
+        <EntityType Name="SanPham">
+          <Key>
+            <PropertyRef Name="IDSanPham" />
+          </Key>
+          <Property Name="IDSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenSanPham" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DonVi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DonGia" Type="Int32" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UrlAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDHangSanXuat" Type="Int32" />
+          <NavigationProperty Name="DichVu_SanPham" Relationship="QLSpaModel.FK_DichVu_SanPham_SanPham" FromRole="SanPham" ToRole="DichVu_SanPham" />
+          <NavigationProperty Name="HangSanXuat" Relationship="QLSpaModel.FK_SanPham_HangSanXuat" FromRole="SanPham" ToRole="HangSanXuat" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_DichVu_SanPham_DichVu">
+          <End Type="QLSpaModel.DichVu" Role="DichVu" Multiplicity="1" />
+          <End Type="QLSpaModel.DichVu_SanPham" Role="DichVu_SanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DichVu">
+              <PropertyRef Name="IDDichVu" />
+            </Principal>
+            <Dependent Role="DichVu_SanPham">
+              <PropertyRef Name="IDDichVu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DichVu_SanPham_SanPham">
+          <End Type="QLSpaModel.SanPham" Role="SanPham" Multiplicity="1" />
+          <End Type="QLSpaModel.DichVu_SanPham" Role="DichVu_SanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPham">
+              <PropertyRef Name="IDSanPham" />
+            </Principal>
+            <Dependent Role="DichVu_SanPham">
+              <PropertyRef Name="IDSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SanPham_HangSanXuat">
+          <End Type="QLSpaModel.HangSanXuat" Role="HangSanXuat" Multiplicity="0..1" />
+          <End Type="QLSpaModel.SanPham" Role="SanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HangSanXuat">
+              <PropertyRef Name="IDHangSanXuat" />
+            </Principal>
+            <Dependent Role="SanPham">
+              <PropertyRef Name="IDHangSanXuat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TrangThaiHen">
+          <Key>
+            <PropertyRef Name="IDTrangThaiHen" />
+          </Key>
+          <Property Name="IDTrangThaiHen" Type="Int32" Nullable="false" />
+          <Property Name="TenTrangThai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LichHens" Relationship="QLSpaModel.FK_LichHen_TrangThaiHen" FromRole="TrangThaiHen" ToRole="LichHen" />
+        </EntityType>
+        <EntityType Name="LichHen">
+          <Key>
+            <PropertyRef Name="IDLichHen" />
+          </Key>
+          <Property Name="IDLichHen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDKhachHang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiGianHen" Type="DateTime" Precision="3" />
+          <Property Name="ThoiGianBaoTruoc" Type="DateTime" Precision="3" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDTrangThaiHen" Type="Int32" />
+          <NavigationProperty Name="TrangThaiHen" Relationship="QLSpaModel.FK_LichHen_TrangThaiHen" FromRole="LichHen" ToRole="TrangThaiHen" />
+          <NavigationProperty Name="KhachHang" Relationship="QLSpaModel.FK_LichHen_KhachHang" FromRole="LichHen" ToRole="KhachHang" />
+        </EntityType>
+        <Association Name="FK_LichHen_TrangThaiHen">
+          <End Type="QLSpaModel.TrangThaiHen" Role="TrangThaiHen" Multiplicity="0..1" />
+          <End Type="QLSpaModel.LichHen" Role="LichHen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrangThaiHen">
+              <PropertyRef Name="IDTrangThaiHen" />
+            </Principal>
+            <Dependent Role="LichHen">
+              <PropertyRef Name="IDTrangThaiHen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LichHen_KhachHang">
+          <End Type="QLSpaModel.KhachHang" Role="KhachHang" Multiplicity="0..1" />
+          <End Type="QLSpaModel.LichHen" Role="LichHen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhachHang">
+              <PropertyRef Name="IDKhachHang" />
+            </Principal>
+            <Dependent Role="LichHen">
+              <PropertyRef Name="IDKhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="LieuTrinh">
+          <Key>
+            <PropertyRef Name="IDLieuTrinh" />
+          </Key>
+          <Property Name="IDLieuTrinh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDDichVu" Type="Int32" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HoaHong" Type="Int32" />
+          <Property Name="TongSoBuoi" Type="Int32" />
+          <Property Name="SoBuoiDaSuDung" Type="Int32" />
+          <Property Name="TongTien" Type="Int32" />
+          <Property Name="NgayMua" Type="DateTime" Precision="0" />
+          <Property Name="SoTienDaThanhToan" Type="Int32" />
+          <Property Name="SoTienChuaThanhToan" Type="Int32" />
+          <Property Name="IDKhachhang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDNhanVien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DichVu" Relationship="QLSpaModel.FK_LieuTrinh_DichVu1" FromRole="LieuTrinh" ToRole="DichVu" />
+          <NavigationProperty Name="KhachHang" Relationship="QLSpaModel.FK_LieuTrinh_KhachHang" FromRole="LieuTrinh" ToRole="KhachHang" />
+          <NavigationProperty Name="NhanVien" Relationship="QLSpaModel.FK_LieuTrinh_NhanVien" FromRole="LieuTrinh" ToRole="NhanVien" />
+          <NavigationProperty Name="LichLieuTrinhs" Relationship="QLSpaModel.FK_LichLieuTrinh_LieuTrinh" FromRole="LieuTrinh" ToRole="LichLieuTrinh" />
+        </EntityType>
+        <Association Name="FK_LieuTrinh_DichVu1">
+          <End Type="QLSpaModel.DichVu" Role="DichVu" Multiplicity="0..1" />
+          <End Type="QLSpaModel.LieuTrinh" Role="LieuTrinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DichVu">
+              <PropertyRef Name="IDDichVu" />
+            </Principal>
+            <Dependent Role="LieuTrinh">
+              <PropertyRef Name="IDDichVu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LieuTrinh_KhachHang">
+          <End Type="QLSpaModel.KhachHang" Role="KhachHang" Multiplicity="0..1" />
+          <End Type="QLSpaModel.LieuTrinh" Role="LieuTrinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhachHang">
+              <PropertyRef Name="IDKhachHang" />
+            </Principal>
+            <Dependent Role="LieuTrinh">
+              <PropertyRef Name="IDKhachhang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LieuTrinh_NhanVien">
+          <End Type="QLSpaModel.NhanVien" Role="NhanVien" Multiplicity="0..1" />
+          <End Type="QLSpaModel.LieuTrinh" Role="LieuTrinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhanVien">
+              <PropertyRef Name="IDNhanVien" />
+            </Principal>
+            <Dependent Role="LieuTrinh">
+              <PropertyRef Name="IDNhanVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="LichLieuTrinh">
+          <Key>
+            <PropertyRef Name="IDLichLieuTrinh" />
+          </Key>
+          <Property Name="IDLichLieuTrinh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDLieuTrinh" Type="Int32" />
+          <Property Name="ThoiGianDieuTri" Type="DateTime" Precision="3" />
+          <Property Name="ThoiGianBaoTruoc" Type="DateTime" Precision="3" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DaThucHien" Type="Boolean" />
+          <NavigationProperty Name="LieuTrinh" Relationship="QLSpaModel.FK_LichLieuTrinh_LieuTrinh" FromRole="LichLieuTrinh" ToRole="LieuTrinh" />
+        </EntityType>
+        <Association Name="FK_LichLieuTrinh_LieuTrinh">
+          <End Type="QLSpaModel.LieuTrinh" Role="LieuTrinh" Multiplicity="0..1" />
+          <End Type="QLSpaModel.LichLieuTrinh" Role="LichLieuTrinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LieuTrinh">
+              <PropertyRef Name="IDLieuTrinh" />
+            </Principal>
+            <Dependent Role="LichLieuTrinh">
+              <PropertyRef Name="IDLieuTrinh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLSpaModelStoreContainer" CdmEntityContainer="QLSpaEntities">
+          <EntitySetMapping Name="DichVus">
+            <EntityTypeMapping TypeName="QLSpaModel.DichVu">
+              <MappingFragment StoreEntitySet="DichVu">
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="TenDichVu" ColumnName="TenDichVu" />
+                <ScalarProperty Name="IDDichVu" ColumnName="IDDichVu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DichVu_SanPham">
+            <EntityTypeMapping TypeName="QLSpaModel.DichVu_SanPham">
+              <MappingFragment StoreEntitySet="DichVu_SanPham">
+                <ScalarProperty Name="DonViTinh" ColumnName="DonViTinh" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="IDSanPham" ColumnName="IDSanPham" />
+                <ScalarProperty Name="IDDichVu" ColumnName="IDDichVu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HangSanXuats">
+            <EntityTypeMapping TypeName="QLSpaModel.HangSanXuat">
+              <MappingFragment StoreEntitySet="HangSanXuat">
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="TenHang" ColumnName="TenHang" />
+                <ScalarProperty Name="IDHangSanXuat" ColumnName="IDHangSanXuat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KhachHangs">
+            <EntityTypeMapping TypeName="QLSpaModel.KhachHang">
+              <MappingFragment StoreEntitySet="KhachHang">
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="CMT" ColumnName="CMT" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="SinhNhat" ColumnName="SinhNhat" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="IDKhachHang" ColumnName="IDKhachHang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LichChamSocs">
+            <EntityTypeMapping TypeName="QLSpaModel.LichChamSoc">
+              <MappingFragment StoreEntitySet="LichChamSoc">
+                <ScalarProperty Name="IDTrangThaiChamSoc" ColumnName="IDTrangThaiChamSoc" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+                <ScalarProperty Name="IDLieuTrinh" ColumnName="IDLieuTrinh" />
+                <ScalarProperty Name="IDLichChamSoc" ColumnName="IDLichChamSoc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NhanViens">
+            <EntityTypeMapping TypeName="QLSpaModel.NhanVien">
+              <MappingFragment StoreEntitySet="NhanVien">
+                <ScalarProperty Name="SinhNhat" ColumnName="SinhNhat" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="CMT" ColumnName="CMT" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="IDNhanVien" ColumnName="IDNhanVien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SanPhams">
+            <EntityTypeMapping TypeName="QLSpaModel.SanPham">
+              <MappingFragment StoreEntitySet="SanPham">
+                <ScalarProperty Name="IDHangSanXuat" ColumnName="IDHangSanXuat" />
+                <ScalarProperty Name="UrlAnh" ColumnName="UrlAnh" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+                <ScalarProperty Name="IDSanPham" ColumnName="IDSanPham" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QLSpaModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrangThaiHens">
+            <EntityTypeMapping TypeName="QLSpaModel.TrangThaiHen">
+              <MappingFragment StoreEntitySet="TrangThaiHen">
+                <ScalarProperty Name="TenTrangThai" ColumnName="TenTrangThai" />
+                <ScalarProperty Name="IDTrangThaiHen" ColumnName="IDTrangThaiHen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LichHens">
+            <EntityTypeMapping TypeName="QLSpaModel.LichHen">
+              <MappingFragment StoreEntitySet="LichHen">
+                <ScalarProperty Name="IDTrangThaiHen" ColumnName="IDTrangThaiHen" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="ThoiGianBaoTruoc" ColumnName="ThoiGianBaoTruoc" />
+                <ScalarProperty Name="ThoiGianHen" ColumnName="ThoiGianHen" />
+                <ScalarProperty Name="IDKhachHang" ColumnName="IDKhachHang" />
+                <ScalarProperty Name="IDLichHen" ColumnName="IDLichHen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LieuTrinhs">
+            <EntityTypeMapping TypeName="QLSpaModel.LieuTrinh">
+              <MappingFragment StoreEntitySet="LieuTrinh">
+                <ScalarProperty Name="IDNhanVien" ColumnName="IDNhanVien" />
+                <ScalarProperty Name="IDKhachhang" ColumnName="IDKhachhang" />
+                <ScalarProperty Name="SoTienChuaThanhToan" ColumnName="SoTienChuaThanhToan" />
+                <ScalarProperty Name="SoTienDaThanhToan" ColumnName="SoTienDaThanhToan" />
+                <ScalarProperty Name="NgayMua" ColumnName="NgayMua" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+                <ScalarProperty Name="SoBuoiDaSuDung" ColumnName="SoBuoiDaSuDung" />
+                <ScalarProperty Name="TongSoBuoi" ColumnName="TongSoBuoi" />
+                <ScalarProperty Name="HoaHong" ColumnName="HoaHong" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="IDDichVu" ColumnName="IDDichVu" />
+                <ScalarProperty Name="IDLieuTrinh" ColumnName="IDLieuTrinh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LichLieuTrinhs">
+            <EntityTypeMapping TypeName="QLSpaModel.LichLieuTrinh">
+              <MappingFragment StoreEntitySet="LichLieuTrinh">
+                <ScalarProperty Name="DaThucHien" ColumnName="DaThucHien" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="ThoiGianBaoTruoc" ColumnName="ThoiGianBaoTruoc" />
+                <ScalarProperty Name="ThoiGianDieuTri" ColumnName="ThoiGianDieuTri" />
+                <ScalarProperty Name="IDLieuTrinh" ColumnName="IDLieuTrinh" />
+                <ScalarProperty Name="IDLichLieuTrinh" ColumnName="IDLichLieuTrinh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

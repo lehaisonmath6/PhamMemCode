@@ -1,0 +1,103 @@
+﻿@model ThiOnlineMVC.DeThi
+
+@{
+    ViewBag.Title = "Chi tiết đề thi";
+    var database = new ThiOnlineMVC.ThiOnlineEntities();
+    List<ThiOnlineMVC.DeThi_CauHoi> cauHois = database.DeThi_CauHoi.Where(n => n.IDDeThi == Model.IDDeThi).ToList();
+}
+
+<<div class="row text-center">
+    <!-- Border Left Utilities -->
+    <div class="col-lg-4">
+        <div class="card mb-4 py-3 border-left-primary">
+            <div class="card-body">
+                <div class="card-header py-3">
+                    <h4 class="m-0 font-weight-bold text-primary">Chi tiết đề thi</h4>
+                </div>
+                <dl class="dl-horizontal">
+                    <dt>
+                        Mã đề thi
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TenDe)
+                    </dd>
+
+                    <dt>
+                        Mô tả
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MoTa)
+                    </dd>
+                    <dt>
+                        Thời gian thi
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ThoiGian)
+                    </dd>
+                    <dt>
+                        Môn thi
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.MonHoc.TenMonHoc)
+                    </dd>
+                    <dt>
+                        Ca thi
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.CaThi.TenCa)
+                    </dd>
+                    <dt>
+                        Kỳ thi
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.CaThi.KyThi.TenKyThi)
+                    </dd>
+                </dl>
+                <p>
+                    @Html.ActionLink("Sửa", "Edit", new { id = Model.IDDeThi }) |
+                    @Html.ActionLink("Trở lại danh sách", "Index")
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Border Bottom Utilities -->
+    <div class="col-lg-8">
+        <div class="card mb-4 py-3 border-bottom-primary">
+            <div class="card-body">
+                <div class="card-header py-3">
+                    <h4 class="m-0 font-weight-bold text-primary">Danh sách câu hỏi kỳ thi </h4>
+                </div>
+           @*     <a href="@Url.Action("Create","CaThis",new { id = Model.})">Thêm ca thi</a>*@
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Tên câu hỏi")
+                        </th>
+                        <th>
+                            @Html.DisplayName( "Độ khó")
+                        </th>
+                       
+                    </tr>
+
+                    @foreach (var item in cauHois)
+                    {
+                       
+                        <tr>
+                            <td>
+                               @item.CauHoi.TenCauHoi
+                            </td>
+                            <td>
+                                @item.CauHoi.DoKho.TenDoKho
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

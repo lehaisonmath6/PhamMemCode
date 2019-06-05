@@ -1,0 +1,51 @@
+﻿@model ThiOnlineMVC.CaThi
+
+@{
+    ViewBag.Title = "Sửa ca thi";
+}
+
+<div class="center-block">
+    <div>
+        <div class="p-5 center-block">
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Sửa thông ca thi!</h1>
+            </div>
+            @using (Html.BeginForm("Edit", "CaThis", FormMethod.Post, new { @class = "user" }))
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.IDCa)
+                <div class="form-group">
+                    @Html.EditorFor(model => model.TenCa, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Tên ca thi" } })
+                    @Html.ValidationMessageFor(model => model.TenCa, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Mô tả" } })
+                    @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(model => model.ThoiGianBatDau, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Thời gian bắt đầu" } })
+                    @Html.ValidationMessageFor(model => model.ThoiGianBatDau, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(model => model.ThoiGianKetThuc, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Thời gian kết thúc" } })
+                    @Html.ValidationMessageFor(model => model.ThoiGianKetThuc, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.DropDownList("IDKyThi", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IDKyThi, "", new { @class = "text-danger" })
+                </div>
+                <button type="submit" value="Save" class="btn btn-google btn-user btn-block">Lưu thông tin</button>
+            </div>
+            }
+            <hr>
+            <div class="text-center">
+                <div>
+                    @Html.ActionLink("Quay trở lại danh sách", "Index", "CaThis", new { @class = "small" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

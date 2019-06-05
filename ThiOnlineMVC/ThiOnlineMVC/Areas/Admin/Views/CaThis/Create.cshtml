@@ -1,0 +1,63 @@
+﻿@model ThiOnlineMVC.CaThi
+
+@{
+    ViewBag.Title = "Tạo ca thi";
+}
+
+<div class="center-block">
+    <div>
+        <div class="p-5 center-block">
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Tạo mới ca thi!</h1>
+            </div>
+            @using (Html.BeginForm("Create", "CaThis", FormMethod.Post, new { @class = "user" }))
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @*  @Html.HiddenFor(model => model.IDKhoa)*@
+
+
+                <div class="form-group">
+                    @Html.EditorFor(model => model.TenCa, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Tên ca thi" } })
+                    @Html.ValidationMessageFor(model => model.TenCa, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group">
+
+                    @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control form-control-user", @placeholder = "Mô tả" } })
+                    @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group">
+                    <p><b>Ngày bắt đầu</b></p>
+                    <input class="form-control form-control-user" data-val="true" data-val-required="Date is required"
+                           id="ThoiGianBatDau" name="ThoiGianBatDau" type="date" value="1/11/1989" />
+                    @Html.ValidationMessageFor(model => model.ThoiGianBatDau, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <p><b>Ngày kết thúc</b></p>
+                    <input class="form-control form-control-user" data-val="true" data-val-required="Date is required"
+                           id="ThoiGianKetThuc" name="ThoiGianKetThuc" type="date" value="1/11/1989" />
+                    @Html.ValidationMessageFor(model => model.ThoiGianKetThuc, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <p><b>Kỳ thi</b></p>
+                    @Html.DropDownList("IDKyThi", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IDKyThi, "", new { @class = "text-danger" })
+                </div>
+                <button type="submit" value="Create" class="btn btn-google btn-user btn-block">Tạo ca thi</button>
+            </div>
+            }
+            <hr>
+            <div class="text-center">
+                <div>
+                    @Html.ActionLink("Quay trở lại danh sách", "Index", "CaThis", new { @class = "small" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

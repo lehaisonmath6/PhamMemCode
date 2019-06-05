@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ThiOnlineMVC.MonHoc>
+
+@{
+    ViewBag.Title = "Danh sách môn học";
+}
+
+<div class="card shadow mb-4 text-center">
+    <div class="card-header py-3">
+        <h2 class="m-0 font-weight-bold text-primary">Quản lý  môn học</h2>
+    </div>
+    <div class="card-body">
+        <p>
+            @Html.ActionLink("Thêm môn học", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Tên môn học
+                </th>
+                <th>
+                    Mô tả
+                </th>
+                <th>
+                    Tên khoa
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenMonHoc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MoTa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem=> item.Khoa.TenKhoa)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Sửa", "Edit", new { id = item.IDMonHoc }) |
+                        @Html.ActionLink("Chi tiết", "Details", new { id = item.IDMonHoc }) |
+                        @Html.ActionLink("Xóa", "Delete", new { id = item.IDMonHoc })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</div>
+
+
